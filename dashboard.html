@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Lead Outreach Platform & Dashboard</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="dashboard.css?v=1.0.2">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-icon"></div>
+                <h2>GlobalOutreach</h2>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-item active" id="btn-tab-overview" onclick="switchTab('overview')">
+                    <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+                    <span>Overview</span>
+                </button>
+                <button class="nav-item" id="btn-tab-nowebsite" onclick="switchTab('nowebsite')">
+                    <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
+                    <span class="badge-container">
+                        No Website
+                        <span class="badge" id="badge-count-nowebsite">0</span>
+                    </span>
+                </button>
+                <button class="nav-item" id="btn-tab-campaign" onclick="switchTab('campaign')">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <span class="badge-container">
+                        Campaign Queue
+                        <span class="badge badge-accent" id="badge-count-campaign">0</span>
+                    </span>
+                </button>
+                <button class="nav-item" id="btn-tab-followup" onclick="switchTab('followup')">
+                    <svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+                    <span class="badge-container">
+                        Follow-Ups
+                        <span class="badge" style="background:#f6ad55;color:#7a4400;" id="badge-count-followup">0</span>
+                    </span>
+                </button>
+                <button class="nav-item" id="btn-tab-replies" onclick="switchTab('replies')">
+                    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+                    <span class="badge-container">
+                        Email Replies
+                        <span class="badge badge-success" id="badge-count-replies">0</span>
+                    </span>
+                </button>
+                <button class="nav-item" id="btn-tab-analytics" onclick="switchTab('analytics')">
+                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                    <span>Analytics</span>
+                </button>
+                <button class="nav-item" id="btn-tab-settings" onclick="switchTab('settings')">
+                    <svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+                    <span>Outreach Settings</span>
+                </button>
+
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span>System Connected</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="header">
+                <div class="header-title">
+                    <h1 id="page-title">Recruitment Agency AI Outreach</h1>
+                    <p id="page-subtitle">Metrics, ATS tech stack breakdown, and campaign status for staffing agencies</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" onclick="fetchData()">
+                        <svg viewBox="0 0 24 24" class="icon-spin" id="refresh-icon"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+                        Refresh Data
+                    </button>
+                    <button class="btn btn-primary" onclick="openScrapeModal()">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+                        Trigger Scraper
+                    </button>
+                </div>
+            </header>
+
+            <!-- Global Date Filter Tabs -->
+            <div class="date-filter-bar" id="date-filter-bar">
+                <button class="date-tab active" onclick="setDateFilter('ALL')">All Time</button>
+            </div>
+
+            <!-- TAB content: OVERVIEW -->
+            <section id="tab-overview" class="tab-pane active">
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-icon icon-blue">
+                            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                        </div>
+                        <div class="kpi-data">
+                            <h3>Total Leads</h3>
+                            <span class="kpi-value" id="kpi-total">0</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon icon-orange">
+                            <svg viewBox="0 0 24 24"><path d="M21.9 21.9l-8.5-8.5-8.5 8.5-1.4-1.4 8.5-8.5-8.5-8.5 1.4-1.4 8.5 8.5 8.5-8.5 1.4 1.4-8.5 8.5 8.5 8.5z"/></svg>
+                        </div>
+                        <div class="kpi-data">
+                            <h3>No Website</h3>
+                            <span class="kpi-value" id="kpi-no-website">0</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon icon-purple">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        </div>
+                        <div class="kpi-data">
+                            <h3>Old Websites</h3>
+                            <span class="kpi-value" id="kpi-old-website">0</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon icon-green">
+                            <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                        </div>
+                        <div class="kpi-data">
+                            <h3>Emails Sent</h3>
+                            <span class="kpi-value" id="kpi-sent">0</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon icon-magenta">
+                            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+                        </div>
+                        <div class="kpi-data">
+                            <h3>Replies Recieved</h3>
+                            <span class="kpi-value" id="kpi-replied">0</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon icon-cyan">
+                            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        </div>
+                        <div class="kpi-data">
+                            <h3>Conversion Rate</h3>
+                            <span class="kpi-value" id="kpi-conversion">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layout-grid">
+                    <!-- Live Stats Chart Placeholder / List -->
+                    <div class="card card-glow">
+                        <div class="card-header">
+                            <h2>Recent Leads</h2>
+                            <p>Latest scraped dental and dermatological profiles</p>
+                        </div>
+                        <div class="recent-leads-list" id="recent-leads-list">
+                            <p class="placeholder-text">Loading recent profiles...</p>
+                        </div>
+                    </div>
+
+                    <!-- Setup Checklist / Guide Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>GitHub Actions Integration</h2>
+                            <p>Automate your outreach queue 24/7 in the cloud</p>
+                        </div>
+                        <div class="integration-guide">
+                            <p>To run this system automatically without keeping your computer on, set up these repository secrets on GitHub:</p>
+                            <ul class="secret-list">
+                                <li><code>SMTP_USER</code> / <code>SMTP_PASSWORD</code>: Sender account (Gmail App Password recommended)</li>
+                                <li><code>IMAP_USER</code> / <code>IMAP_PASSWORD</code>: Email inbox polling credentials to scan replies</li>
+                                <li><code>SMTP_HOST</code> / <code>IMAP_HOST</code>: Server endpoints (default is Gmail)</li>
+                            </ul>
+                            <div class="cron-tag">
+                                <strong>Scheduled Run:</strong> Daily at 09:00 UTC
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB content: NO WEBSITE LEADS -->
+            <section id="tab-nowebsite" class="tab-pane">
+                <div class="card">
+                    <div class="card-header flex-header">
+                        <div>
+                            <h2>No-Website Target Profiles</h2>
+                            <p>Dermatologists and Dentists who have no website online. Direct marketing targets.</p>
+                        </div>
+                        <a href="/api/export-no-website" class="btn btn-accent btn-glow" id="btn-export-csv">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                            Download No-Website Leads (CSV)
+                        </a>
+                    </div>
+                    <div class="search-bar-container">
+                        <input type="text" id="search-nowebsite" placeholder="Search by name, city, phone..." class="form-control inline-search" oninput="filterTable('nowebsite')">
+                    </div>
+                    <div class="table-container">
+                        <table id="table-nowebsite">
+                            <thead>
+                                <tr>
+                                    <th>Business Name</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>Keyword</th>
+                                    <th>Location</th>
+                                    <th>Scraped At</th>
+                                </tr>
+                            </thead>
+                            <tbody id="body-nowebsite">
+                                <tr><td colspan="6" class="placeholder-text">Loading leads with no websites...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB content: CAMPAIGN QUEUE (OLD WEBSITES) -->
+            <section id="tab-campaign" class="tab-pane">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Outreach Campaign Queue</h2>
+                        <p>Leads with old/unresponsive websites. Automatically emailed up to 50/day.</p>
+                    </div>
+                    <div class="search-bar-container filter-row">
+                        <input type="text" id="search-campaign" placeholder="Search by name, email, city..." class="form-control inline-search" oninput="filterTable('campaign')">
+                        <select id="filter-email-status" class="form-control filter-select" onchange="filterTable('campaign')">
+                            <option value="ALL">All Email Statuses</option>
+                            <option value="Not Sent">Not Sent</option>
+                            <option value="Sent">Sent</option>
+                            <option value="Sent (Dry Run)">Sent (Dry Run)</option>
+                            <option value="Replied">Replied</option>
+                            <option value="Failed">Failed</option>
+                        </select>
+                    </div>
+                    <div class="table-container">
+                        <table id="table-campaign">
+                            <thead>
+                                <tr>
+                                    <th>Business Name</th>
+                                    <th>Target Website</th>
+                                    <th>Email Address</th>
+                                    <th>Email Status</th>
+                                    <th>Sent Date</th>
+                                    <th>Replies / Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody id="body-campaign">
+                                <tr><td colspan="6" class="placeholder-text">Loading campaign targets...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB content: FILTERED SITES (MODERN) -->
+            <section id="tab-modern" class="tab-pane">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Filtered Modern Profiles</h2>
+                        <p>Leads with modern, responsive, and secure websites. Excluded from email outreach.</p>
+                    </div>
+                    <div class="search-bar-container">
+                        <input type="text" id="search-modern" placeholder="Search by name, website, city..." class="form-control inline-search" oninput="filterTable('modern')">
+                    </div>
+                    <div class="table-container">
+                        <table id="table-modern">
+                            <thead>
+                                <tr>
+                                    <th>Business Name</th>
+                                    <th>Website</th>
+                                    <th>Responsiveness (Viewport)</th>
+                                    <th>Security (SSL)</th>
+                                    <th>Copyright Year</th>
+                                    <th>City</th>
+                                </tr>
+                            </thead>
+                            <tbody id="body-modern">
+                                <tr><td colspan="6" class="placeholder-text">Loading modern sites...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB content: FOLLOW-UPS -->
+            <section id="tab-followup" class="tab-pane">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>⏰ Follow-Up System</h2>
+                        <p>5-day follow-up emails · max 20/day · min 30 new outreach guaranteed</p>
+                    </div>
+                    <div style="display:flex;gap:24px;flex-wrap:wrap;padding:20px 0 8px;">
+                        <div class="kpi-card" style="flex:1;min-width:130px;">
+                            <div class="kpi-icon icon-orange"><svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg></div>
+                            <div class="kpi-data"><h3>Follow-Ups Sent</h3><span class="kpi-value" id="kpi-followup-sent">0</span></div>
+                        </div>
+                        <div class="kpi-card" style="flex:1;min-width:130px;">
+                            <div class="kpi-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div>
+                            <div class="kpi-data"><h3>Due Today</h3><span class="kpi-value" id="kpi-followup-due">0</span></div>
+                        </div>
+                        <div class="kpi-card" style="flex:1;min-width:130px;">
+                            <div class="kpi-icon icon-green"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></div>
+                            <div class="kpi-data"><h3>Pending (Waiting)</h3><span class="kpi-value" id="kpi-followup-pending">0</span></div>
+                        </div>
+                    </div>
+                    <div class="table-container" style="margin-top:8px;">
+                        <table id="table-followup">
+                            <thead>
+                                <tr>
+                                    <th>Business Name</th>
+                                    <th>Email</th>
+                                    <th>City</th>
+                                    <th>Initial Sent</th>
+                                    <th>Follow-Up Sent</th>
+                                    <th>Days Since Initial</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="body-followup">
+                                <tr><td colspan="7" class="placeholder-text">Loading follow-ups...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB content: EMAIL REPLIES -->
+            <section id="tab-replies" class="tab-pane">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Email Replies Inbox</h2>
+                        <p>Replies received from dermatologists and dentists we contacted. Click a message to read the full body.</p>
+                    </div>
+                    <div class="search-bar-container">
+                        <input type="text" id="search-replies" placeholder="Search replies by sender, subject, content..." class="form-control inline-search" oninput="renderReplies()">
+                    </div>
+                    <div class="replies-inbox-container" id="replies-inbox">
+                        <p class="placeholder-text">Loading replies...</p>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- TAB content: ANALYTICS -->
+            <section id="tab-analytics" class="tab-pane">
+                <div class="layout-grid" style="grid-template-columns: 1fr;">
+                    <!-- Daily Campaign Performance Chart -->
+                    <div class="card card-glow">
+                        <div class="card-header">
+                            <h2>Daily Campaign Performance</h2>
+                            <p>Timeline showing leads scraped, emails sent, replies received, and sites without websites daily</p>
+                        </div>
+                        <div class="chart-container" style="position: relative; height:450px; width:100%; padding: 10px;">
+                            <canvas id="campaignLineChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB content: SETTINGS -->
+            <section id="tab-settings" class="tab-pane">
+                <div class="layout-grid">
+                    <!-- Config Settings Form -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Configuration</h2>
+                            <p>Edit search terms, daily limits, and promotional demo URLs</p>
+                        </div>
+                        <form id="form-config" class="form-vertical" onsubmit="saveConfig(event)">
+                            <div class="form-group">
+                                <label for="config-limit">Daily Email Outreach Limit</label>
+                                <input type="number" id="config-limit" class="form-control" min="1" max="100" required>
+                                <span class="input-hint">Maximum number of outbound emails sent per day (keep below 50 to avoid spam flags).</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="config-promo-dental">Dental Demo Website URL</label>
+                                <input type="url" id="config-promo-dental" class="form-control" required>
+                                <span class="input-hint">The promotional URL sent to Dentists. You can find this in <code>/website/dental-website/</code>.</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="config-promo-derm">Dermatology Demo Website URL</label>
+                                <input type="url" id="config-promo-derm" class="form-control" required>
+                                <span class="input-hint">The promotional URL sent to Dermatologists. You can find this in <code>/website/derm-site/</code>.</span>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary" id="btn-save-config">Save Configuration</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Email Templates Form -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Outreach Email Templates</h2>
+                            <p>Customize the email subject and copy sent to dental and skin clinics</p>
+                        </div>
+                        <form id="form-templates" class="form-vertical" onsubmit="saveTemplates(event)">
+                            <div class="form-group">
+                                <label for="template-niche">Select Campaign Template</label>
+                                <select id="template-niche" class="form-control" onchange="loadTemplateNiche()">
+                                    <option value="dental">Dental Practice Campaign</option>
+                                    <option value="derm">Dermatology Clinic Campaign</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="template-subject">Email Subject</label>
+                                <input type="text" id="template-subject" class="form-control" required>
+                                <span class="input-hint">Placeholders available: <code>{business_name}</code></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="template-body">Email Body</label>
+                                <textarea id="template-body" class="form-control text-area" rows="12" required></textarea>
+                                <span class="input-hint">Placeholders available: <code>{business_name}</code>, <code>{website_url}</code>, <code>{promo_url}</code></span>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary" id="btn-save-templates">Save Template</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Scraper Trigger Modal -->
+    <div class="modal" id="modal-scrape">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h2>Manual Scraper Control</h2>
+                <button class="btn-close" onclick="closeScrapeModal()">&times;</button>
+            </div>
+            <p>Trigger a manual background run to query Google Maps and audit websites. The task runs asynchronously.</p>
+            <form id="form-scrape" class="form-vertical" onsubmit="submitScrapeJob(event)">
+                <div class="form-group">
+                    <label for="scrape-keyword">Keyword Override (Optional)</label>
+                    <select id="scrape-keyword" class="form-control">
+                        <option value="">-- Use random keyword from configuration --</option>
+                        <option value="dentist">dentist</option>
+                        <option value="dental clinic">dental clinic</option>
+                        <option value="dermatologist">dermatologist</option>
+                        <option value="skin clinic">skin clinic</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="scrape-city">City Override (Optional)</label>
+                    <input type="text" id="scrape-city" class="form-control" placeholder="e.g. London, Boston, Paris">
+                </div>
+
+                <div class="form-group">
+                    <label for="scrape-limit">Result Limit</label>
+                    <input type="number" id="scrape-limit" class="form-control" value="20" min="1" max="100">
+                    <span class="input-hint">Number of search results to pull from Google Maps sidebar.</span>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="scrape-dryrun" checked>
+                    <label for="scrape-dryrun">Dry Run Emailing (Only mock/log email dispatches)</label>
+                </div>
+
+                <div class="form-actions modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeScrapeModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="btn-submit-scrape">Start Scraper Job</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="dashboard.js?v=1.0.4"></script>
+</body>
+</html>

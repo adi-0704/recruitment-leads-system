@@ -1,0 +1,98 @@
+name: Recruitment Agency AI Outreach Campaign
+
+on:
+  schedule:
+    # Runs daily at 10:00 UTC = 3:30 PM IST
+    - cron: '0 10 * * *'
+
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry-run only? (true = log, false = send real emails)'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['false', 'true']
+      limit:
+        description: 'Max Google Maps results per search term'
+        required: false
+        default: '150'
+      target:
+        description: 'Target qualified recruitment leads today (default: 400)'
+        required: false
+        default: '400'
+
+permissions:
+  contents: write
+
+jobs:
+  recruitment-outreach:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: 'requirements.txt'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install Playwright Chromium
+        run: python -m playwright install --with-deps chromium
+
+      - name: Run Recruitment Agency Scraper & Outreach Engine
+        env:
+          SMTP_HOST:     ${{ secrets.SMTP_HOST || 'smtp.gmail.com' }}
+          SMTP_PORT:     ${{ secrets.SMTP_PORT || '587' }}
+          SMTP_USER:     ${{ secrets.SMTP_USER || 'aditya.airecruitment@gmail.com' }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD || 'psxirlbzfcixnfyl' }}
+          SMTP_FROM:     ${{ secrets.SMTP_FROM || 'aditya.airecruitment@gmail.com' }}
+          IMAP_HOST:     ${{ secrets.IMAP_HOST || 'imap.gmail.com' }}
+          IMAP_USER:     ${{ secrets.IMAP_USER || 'aditya.airecruitment@gmail.com' }}
+          IMAP_PASSWORD: ${{ secrets.IMAP_PASSWORD || 'psxirlbzfcixnfyl' }}
+        run: |
+          echo "=========================================================="
+          echo "  RECRUITMENT AGENCY AI OUTREACH CAMPAIGN"
+          echo "  Target: 50 new emails / day | 50 follow-ups / day"
+          echo "  Email Sender: aditya.airecruitment@gmail.com"
+          echo "=========================================================="
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            python scrape_and_outreach.py --target 400 --limit 150 --max-iterations 100
+          else
+            ARGS="--limit ${{ github.event.inputs.limit || '150' }}"
+            [ "${{ github.event.inputs.dry_run }}" = "true" ] && ARGS="$ARGS --dry-run"
+            TARGET="${{ github.event.inputs.target || '400' }}"
+            [ "$TARGET" != "0" ] && ARGS="$ARGS --target $TARGET"
+            echo "Args: $ARGS"
+            eval python scrape_and_outreach.py $ARGS
+          fi
+
+      - name: Export data.json for Dashboard
+        if: always()
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER || 'aditya.airecruitment@gmail.com' }}
+          SMTP_FROM: ${{ secrets.SMTP_FROM || 'aditya.airecruitment@gmail.com' }}
+        run: python generate_data_json.py
+
+      - name: Commit & Sync Results to Repository
+        if: always()
+        run: |
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main || true
+          git add leads.db data.json sender_email.txt || true
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: daily recruitment agency outreach sync [skip ci]"
+            git push
+          fi

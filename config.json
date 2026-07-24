@@ -1,0 +1,90 @@
+{
+  "keywords": [
+    { "term": "recruitment agency", "niche": "general_staffing" },
+    { "term": "staffing agency", "niche": "general_staffing" },
+    { "term": "executive search firm", "niche": "exec_search" },
+    { "term": "tech recruitment agency", "niche": "tech" },
+    { "term": "IT staffing agency", "niche": "tech" },
+    { "term": "healthcare staffing agency", "niche": "healthcare" },
+    { "term": "medical recruitment agency", "niche": "healthcare" },
+    { "term": "finance recruitment firm", "niche": "finance" },
+    { "term": "accounting staffing agency", "niche": "finance" },
+    { "term": "engineering staffing agency", "niche": "engineering" },
+    { "term": "temp staffing agency", "niche": "commercial" },
+    { "term": "commercial recruitment agency", "niche": "commercial" },
+    { "term": "headhunting firm", "niche": "exec_search" },
+    { "term": "talent acquisition consultancy", "niche": "general_staffing" },
+    { "term": "RPO recruitment agency", "niche": "general_staffing" }
+  ],
+  "cities": [
+    "Mumbai", "Bengaluru", "Delhi", "Gurgaon", "Noida", "Hyderabad", "Pune", "Chennai", "Kolkata", "Ahmedabad", "Chandigarh", "Jaipur", "Indore", "Kochi",
+    "London", "Birmingham", "Manchester", "Leeds", "Glasgow", "Liverpool", "Bristol",
+    "New York", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio", "San Diego", "Dallas", "Austin", "Seattle", "San Francisco", "Boston", "Atlanta",
+    "Toronto", "Montreal", "Vancouver", "Calgary",
+    "Sydney", "Melbourne", "Brisbane", "Perth",
+    "Dublin", "Singapore", "Amsterdam", "Berlin", "Dubai"
+  ],
+  "daily_email_limit": 100,
+  "followup_max_per_day": 50,
+  "new_outreach_min_per_day": 50,
+  "follow_up_days": 3,
+  "send_gap_seconds": 60,
+  "promo_urls": {
+    "general_staffing": "https://recruitment-ai-assistant.vercel.app/",
+    "tech":             "https://recruitment-ai-assistant.vercel.app/tech",
+    "healthcare":       "https://recruitment-ai-assistant.vercel.app/healthcare",
+    "exec_search":       "https://recruitment-ai-assistant.vercel.app/executive",
+    "finance":          "https://recruitment-ai-assistant.vercel.app/finance",
+    "engineering":      "https://recruitment-ai-assistant.vercel.app/engineering",
+    "commercial":       "https://recruitment-ai-assistant.vercel.app/commercial"
+  },
+  "ats_patterns": [
+    "bullhorn",
+    "vincere",
+    "greenhouse",
+    "workable",
+    "lever",
+    "loxo",
+    "jobadder",
+    "zoho.recruit",
+    "bamboohr",
+    "smartrecruiters",
+    "breezy.hr",
+    "recruitee",
+    "hubspot"
+  ],
+  "email_templates": {
+    "general_staffing": {
+      "subject": "Quick AI candidate screening audit for {business_name}",
+      "body": "Hi {contact_name},\n\nI ran a quick audit of {business_name}'s candidate submission workflow on {website_url} and noticed a few operational bottlenecks:\n\n{website_issues}\n\nWe build custom 24/7 AI Recruiter Assistants for staffing agencies that pre-screen applicants, parse resumes directly into your ATS ({ats_system}), and auto-schedule qualified candidates onto your recruiters' calendars within 3 minutes.\n\nSee a live interactive demo here:\n{promo_url}\n\nAre you open to a quick 5-minute call this week to see how this would integrate with {business_name}'s workflow?\n\nBest regards,\nAditya Tyagi\nAI & Automation Systems Engineer"
+    },
+    "tech": {
+      "subject": "Submittal speed & candidate pre-screening for {business_name}",
+      "body": "Hi {contact_name},\n\nI checked {business_name}'s website ({website_url}) and ran an audit on your candidate funnel for IT & Tech roles:\n\n{website_issues}\n\nIn tech recruitment, delayed recruiter follow-up leads to high candidate drop-off. Our AI Recruiter agent pre-screens senior software engineers, verifies technical skill tags, and syncs candidate notes directly into {ats_system}.\n\nSee a 90-second tech candidate screening demo:\n{promo_url}\n\nWould you be open to a 5-minute call this Thursday to explore this for {business_name}?\n\nBest regards,\nAditya Tyagi\nAI & Automation Systems Engineer"
+    },
+    "healthcare": {
+      "subject": "24/7 locum & healthcare candidate screening for {business_name}",
+      "body": "Hi {contact_name},\n\nI did a quick workflow analysis of {business_name}'s candidate portal on {website_url}:\n\n{website_issues}\n\nHealthcare & locum candidates often register outside regular office hours. Our AI Assistant screens certifications, availability, and compliance documents 24/7, booking verified healthcare pros instantly.\n\nCheck out our live healthcare agency assistant:\n{promo_url}\n\nAre you open to a quick 5-minute chat to discuss how this works for {business_name}?\n\nBest regards,\nAditya Tyagi\nAI & Automation Systems Engineer"
+    },
+    "exec_search": {
+      "subject": "Automating candidate vetting & executive intake for {business_name}",
+      "body": "Hi {contact_name},\n\nI recently reviewed {business_name}'s executive search portal on {website_url} and identified potential candidate engagement gaps:\n\n{website_issues}\n\nWe design discreet AI Executive Screening Assistants that conduct preliminary intake, extract confidential career highlights, and sync qualified executive profiles into your CRM.\n\nSee a demo of our executive search AI workflow:\n{promo_url}\n\nWould you be open to a brief 5-minute conversation next week?\n\nBest regards,\nAditya Tyagi\nAI & Automation Systems Engineer"
+    },
+    "followup_1": {
+      "subject": "Re: Quick AI candidate screening audit for {business_name}",
+      "body": "Hi {contact_name},\n\nQuick follow-up on my note regarding {business_name}'s candidate screening workflow.\n\nAgencies utilizing automated 24/7 candidate pre-screening cut their time-to-submittal by 65% and capture 3x more candidate responses after hours.\n\nHere is a 90-second video demo showing direct sync with {ats_system}:\n{promo_url}\n\nWould it make sense to explore if a similar setup could help your recruiters at {business_name}?\n\nBest regards,\nAditya Tyagi"
+    },
+    "followup_2": {
+      "subject": "Automating client BD for {business_name}",
+      "body": "Hi {contact_name},\n\nBeyond candidate vetting, another major growth bottleneck for {business_name} is client acquisition.\n\nOur AI outreach engine can automatically match your pre-vetted candidate talent with new hiring managers opening similar roles across {city}.\n\nCheck out the client BD workflow demo here:\n{promo_url}\n\nDo you have 10 minutes next Tuesday for a quick walkthrough?\n\nBest regards,\nAditya Tyagi"
+    },
+    "followup_3": {
+      "subject": "Recruiter capacity vs candidate drop-off at {business_name}",
+      "body": "Hi {contact_name},\n\nWhen candidates apply after hours, delayed recruiter response leads to a 40% drop-off rate before the first screening call.\n\nFor an agency in {city}, capturing just 2 additional qualified placements per month pays for the AI automation system 5x over.\n\nCheck out our agency ROI calculator:\n{promo_url}\n\nIs optimizing recruiter submittal speed a priority for {business_name} this quarter?\n\nBest regards,\nAditya Tyagi"
+    },
+    "breakup": {
+      "subject": "Closing the loop — {business_name}",
+      "body": "Hi {contact_name},\n\nI haven't heard back, so I assume candidate screening automation isn't a top priority for {business_name} right now.\n\nI'll close your file for now. If anything changes down the road, you can always view our recruitment AI demo here:\n{promo_url}\n\nWishing {business_name} continued success!\n\nBest regards,\nAditya Tyagi"
+    }
+  }
+}
