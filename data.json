@@ -1,6 +1,42 @@
 {
   "leads": [
     {
+      "id": 47,
+      "name": "HRMatrix Pty Ltd",
+      "phone": "+61 8 6161 1573",
+      "address": "\ue0c8\nLevel 12/197 St Georges Terrace, Perth WA 6000, Australia",
+      "website": "http://www.hrmatrix.com.au/",
+      "status": "Old Website",
+      "email": "605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com",
+      "email_status": "Sent",
+      "sent_at": "2026-07-24T11:07:04.590847",
+      "followup_sent_at": null,
+      "replied_at": null,
+      "query": "accounting staffing agency",
+      "location": "Perth",
+      "scraped_at": "2026-07-24T11:07:03.600596",
+      "website_viewport": 1,
+      "website_ssl": 1,
+      "website_copyright_year": 2016,
+      "website_notes": "Issues found: outdated design (copyright shows 2016); no instant candidate scheduling (candidates cannot book screening calls directly from the website); no AI assistant or 24/7 candidate chat (no way to pre-screen applicants after business hours).",
+      "email_error": null,
+      "reply_subject": null,
+      "reply_body": null,
+      "agency_niche": null,
+      "ats_system": null,
+      "recruiter_count": 0,
+      "active_open_roles": 0,
+      "candidate_portal_type": null,
+      "ai_screening_detected": 0,
+      "technologies_used": null,
+      "pain_points": null,
+      "ai_opportunity_score": 0,
+      "personalization_data": null,
+      "reply_category": null,
+      "contact_name": null,
+      "job_title": null
+    },
+    {
       "id": 46,
       "name": "MACIAS CONSULTING",
       "phone": "+61 8 6141 3200",
@@ -1298,11 +1334,11 @@
     }
   ],
   "stats": {
-    "total": 36,
+    "total": 37,
     "no_website": 0,
-    "old_website": 32,
+    "old_website": 33,
     "modern_website": 4,
-    "sent": 31,
+    "sent": 32,
     "followup_sent": 0,
     "replied": 0,
     "failed": 0,
@@ -1314,5 +1350,5 @@
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-07-24T11:06:01.445884+00:00"
+  "generated_at": "2026-07-24T11:07:04.593287+00:00"
 }
