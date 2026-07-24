@@ -1,6 +1,42 @@
 {
   "leads": [
     {
+      "id": 29,
+      "name": "Titan Recruitment",
+      "phone": "+61 8 6467 0600",
+      "address": "\ue0c8\n7/216 St Georges Terrace, Perth WA 6000, Australia",
+      "website": "http://www.titanrecruitment.com.au/",
+      "status": "Old Website",
+      "email": "info@titanrecruitment.com.au",
+      "email_status": "Sent",
+      "sent_at": "2026-07-24T10:50:21.386928",
+      "followup_sent_at": null,
+      "replied_at": null,
+      "query": "accounting staffing agency",
+      "location": "Perth",
+      "scraped_at": "2026-07-24T10:50:20.308901",
+      "website_viewport": 0,
+      "website_ssl": 1,
+      "website_copyright_year": 2019,
+      "website_notes": "Issues found: not mobile-friendly (broken layout on phones and tablets); outdated design (copyright shows 2019); no instant candidate scheduling (candidates cannot book screening calls directly from the website).",
+      "email_error": null,
+      "reply_subject": null,
+      "reply_body": null,
+      "agency_niche": null,
+      "ats_system": null,
+      "recruiter_count": 0,
+      "active_open_roles": 0,
+      "candidate_portal_type": null,
+      "ai_screening_detected": 0,
+      "technologies_used": null,
+      "pain_points": null,
+      "ai_opportunity_score": 0,
+      "personalization_data": null,
+      "reply_category": null,
+      "contact_name": null,
+      "job_title": null
+    },
+    {
       "id": 28,
       "name": "HOBAN | Recruitment Agency Perth",
       "phone": "+61 8 9230 5600",
@@ -686,11 +722,11 @@
     }
   ],
   "stats": {
-    "total": 19,
+    "total": 20,
     "no_website": 0,
-    "old_website": 17,
+    "old_website": 18,
     "modern_website": 2,
-    "sent": 16,
+    "sent": 17,
     "followup_sent": 0,
     "replied": 0,
     "failed": 0,
@@ -702,5 +738,5 @@
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-07-24T10:49:16.965982+00:00"
+  "generated_at": "2026-07-24T10:50:21.388983+00:00"
 }
