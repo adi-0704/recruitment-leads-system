@@ -1,6 +1,42 @@
 {
   "leads": [
     {
+      "id": 136,
+      "name": "First Class Workforce Solutions",
+      "phone": "404) 897-5535",
+      "address": "\ue0c8\n1447 Peachtree St NE Ste 370, Atlanta, GA 30309",
+      "website": "https://www.firstclassworkforce.com/",
+      "status": "No Booking/AI",
+      "email": "info@firstclassworkforce.com",
+      "email_status": "Sent",
+      "sent_at": "2026-07-24T11:56:04.772787",
+      "followup_sent_at": null,
+      "replied_at": null,
+      "query": "recruitment agency",
+      "location": "Atlanta",
+      "scraped_at": "2026-07-24T11:56:03.815187",
+      "website_viewport": 1,
+      "website_ssl": 1,
+      "website_copyright_year": 2026,
+      "website_notes": "Issues found: no instant candidate scheduling (candidates cannot book screening calls directly from the website); no AI assistant or 24/7 candidate chat (no way to pre-screen applicants after business hours).",
+      "email_error": null,
+      "reply_subject": null,
+      "reply_body": null,
+      "agency_niche": null,
+      "ats_system": null,
+      "recruiter_count": 0,
+      "active_open_roles": 0,
+      "candidate_portal_type": null,
+      "ai_screening_detected": 0,
+      "technologies_used": null,
+      "pain_points": null,
+      "ai_opportunity_score": 0,
+      "personalization_data": null,
+      "reply_category": null,
+      "contact_name": null,
+      "job_title": null
+    },
+    {
       "id": 135,
       "name": "Maverick Recruiters",
       "phone": "770) 709-6360",
@@ -3458,11 +3494,11 @@
     }
   ],
   "stats": {
-    "total": 96,
+    "total": 97,
     "no_website": 2,
-    "old_website": 71,
+    "old_website": 72,
     "modern_website": 23,
-    "sent": 70,
+    "sent": 71,
     "followup_sent": 0,
     "replied": 0,
     "failed": 0,
@@ -3474,5 +3510,5 @@
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At\n\"US Air Force Recruiting - Atlanta\",\"770) 276-0511\",\"\ue0c8\n3620 Camp Creek Parkway Southwest #701, Atlanta, GA 30331\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:45:36.234375\"\n\"Sevarg Staffing\",\"\",\"\ue0c8\n260 W Peachtree St NW #2200, Atlanta, GA 30303\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:38:50.583234\"",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-07-24T11:55:01.885709+00:00"
+  "generated_at": "2026-07-24T11:56:04.776049+00:00"
 }
