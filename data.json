@@ -1,6 +1,42 @@
 {
   "leads": [
     {
+      "id": 73,
+      "name": "Platinum Staffing Inc",
+      "phone": "404) 524-1065",
+      "address": "platinum-staffing.com",
+      "website": "https://platinum-staffing.com/",
+      "status": "No Booking/AI",
+      "email": "leah@platinumstaffing.org",
+      "email_status": "Sent",
+      "sent_at": "2026-07-24T11:25:33.257692",
+      "followup_sent_at": null,
+      "replied_at": null,
+      "query": "recruitment agency",
+      "location": "Atlanta",
+      "scraped_at": "2026-07-24T11:25:32.181135",
+      "website_viewport": 1,
+      "website_ssl": 1,
+      "website_copyright_year": null,
+      "website_notes": "Issues found: no instant candidate scheduling (candidates cannot book screening calls directly from the website); no AI assistant or 24/7 candidate chat (no way to pre-screen applicants after business hours); no candidate application or quick enquiry form.",
+      "email_error": null,
+      "reply_subject": null,
+      "reply_body": null,
+      "agency_niche": null,
+      "ats_system": null,
+      "recruiter_count": 0,
+      "active_open_roles": 0,
+      "candidate_portal_type": null,
+      "ai_screening_detected": 0,
+      "technologies_used": null,
+      "pain_points": null,
+      "ai_opportunity_score": 0,
+      "personalization_data": null,
+      "reply_category": null,
+      "contact_name": null,
+      "job_title": null
+    },
+    {
       "id": 70,
       "name": "Atlanta Hiring Solutions",
       "phone": "404) 343-3776",
@@ -1982,11 +2018,11 @@
     }
   ],
   "stats": {
-    "total": 55,
+    "total": 56,
     "no_website": 0,
-    "old_website": 45,
+    "old_website": 46,
     "modern_website": 10,
-    "sent": 44,
+    "sent": 45,
     "followup_sent": 0,
     "replied": 0,
     "failed": 0,
@@ -1998,5 +2034,5 @@
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-07-24T11:24:21.772119+00:00"
+  "generated_at": "2026-07-24T11:25:33.260355+00:00"
 }
