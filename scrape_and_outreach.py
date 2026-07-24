@@ -503,26 +503,29 @@ async def scrape_new_leads(
                 if not email:
                     lead_status = "Filtered (No Email)"
                     print("      -> Skipped from outreach queue (no email found)")
+                else:
+                    # Check if this email address was ever emailed previously
+                    cursor.execute(
+                        "SELECT id, email_status FROM leads WHERE email = ? AND email_status NOT IN ('Not Sent', 'Filtered (No Email)')",
+                        (email,)
+                    )
+                    existing_email = cursor.fetchone()
+                    if existing_email:
+                        print(f"      -> [Skip] Duplicate Email: '{email}' already contacted ({existing_email[1]}).")
+                        should_email = False
 
             # Check if we should immediately do outreach
-            should_email = (
-                immediate_outreach
-                and lead_status in ["Old Website", "No Booking/AI"]
-                and email
-            )
-
-            email_status = 'Not Sent'
             if should_email:
-                # Check daily cap before attempting send
                 today_date = datetime.now().strftime("%Y-%m-%d")
-                sent_today = conn.execute(
-                    "SELECT COUNT(*) FROM leads WHERE sent_at LIKE ?",
+                NEW_OUTREACH_CAP = config.get("new_outreach_min_per_day", 50)
+                new_sent_today = conn.execute(
+                    "SELECT COUNT(*) FROM leads WHERE sent_at LIKE ? AND email_status IN ('Sent', 'Sent (Dry Run)') AND followup_sent_at IS NULL",
                     (f"{today_date}%",)
                 ).fetchone()[0]
 
-                if sent_today >= DAILY_CAP:
-                    print(f"      -> [Cap] Daily limit of {DAILY_CAP} emails reached. Skipping immediate outreach.")
-                    cap_reached = True
+                if new_sent_today >= NEW_OUTREACH_CAP:
+                    print(f"      -> [Cap] Daily new outreach limit of {NEW_OUTREACH_CAP} reached today. Skipping immediate outreach.")
+                    should_email = False
 
             # Persist lead to DB
             lead_id = None
@@ -1010,7 +1013,7 @@ def send_outreach_emails(
 
         remaining_slots = DAILY_CAP - budget_used
 
-        # Pull eligible leads: Old Website + No Booking/AI — unsent, have email
+        # Pull eligible leads: Old Website + No Booking/AI — unsent, have email, deduplicated by email
         leads_to_email = conn.execute("""
             SELECT id, name, email, website, query, location, status, website_notes
             FROM   leads
@@ -1018,6 +1021,10 @@ def send_outreach_emails(
               AND  email_status  = 'Not Sent'
               AND  email         IS NOT NULL
               AND  email         != ''
+              AND  email NOT IN (
+                  SELECT email FROM leads WHERE email_status IN ('Sent', 'Sent (Dry Run)', 'Follow-Up Sent', 'Replied', 'Bounced')
+              )
+            GROUP BY email
             ORDER BY scraped_at DESC
             LIMIT ?
         """, (remaining_slots,)).fetchall()
