@@ -1,6 +1,42 @@
 {
   "leads": [
     {
+      "id": 46,
+      "name": "MACIAS CONSULTING",
+      "phone": "+61 8 6141 3200",
+      "address": "\ue0c8\nExchange Tower, Level 17/2 The Esplanade, Perth WA 6000, Australia",
+      "website": "http://maciasconsulting.com.au/",
+      "status": "No Booking/AI",
+      "email": "eric@maciasconsulting.com.au",
+      "email_status": "Sent",
+      "sent_at": "2026-07-24T11:06:01.443193",
+      "followup_sent_at": null,
+      "replied_at": null,
+      "query": "accounting staffing agency",
+      "location": "Perth",
+      "scraped_at": "2026-07-24T11:06:00.439000",
+      "website_viewport": 1,
+      "website_ssl": 1,
+      "website_copyright_year": 2026,
+      "website_notes": "Issues found: no instant candidate scheduling (candidates cannot book screening calls directly from the website); no AI assistant or 24/7 candidate chat (no way to pre-screen applicants after business hours); no website analytics (no visibility into candidate drop-off or job board traffic).",
+      "email_error": null,
+      "reply_subject": null,
+      "reply_body": null,
+      "agency_niche": null,
+      "ats_system": null,
+      "recruiter_count": 0,
+      "active_open_roles": 0,
+      "candidate_portal_type": null,
+      "ai_screening_detected": 0,
+      "technologies_used": null,
+      "pain_points": null,
+      "ai_opportunity_score": 0,
+      "personalization_data": null,
+      "reply_category": null,
+      "contact_name": null,
+      "job_title": null
+    },
+    {
       "id": 45,
       "name": "Lloyd Recruitment Group (LRGWA) | Perth Recruitment Agency",
       "phone": "+61 8 9367 3389",
@@ -1262,11 +1298,11 @@
     }
   ],
   "stats": {
-    "total": 35,
+    "total": 36,
     "no_website": 0,
-    "old_website": 31,
+    "old_website": 32,
     "modern_website": 4,
-    "sent": 30,
+    "sent": 31,
     "followup_sent": 0,
     "replied": 0,
     "failed": 0,
@@ -1278,5 +1314,5 @@
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-07-24T11:04:57.993094+00:00"
+  "generated_at": "2026-07-24T11:06:01.445884+00:00"
 }
