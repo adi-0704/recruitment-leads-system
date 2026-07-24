@@ -2,8 +2,8 @@ name: Recruitment Agency AI Outreach Campaign
 
 on:
   schedule:
-    # Runs daily at 10:00 UTC = 3:30 PM IST
-    - cron: '0 10 * * *'
+    # Runs daily at 06:30 UTC = 12:00 PM IST
+    - cron: '30 6 * * *'
 
   workflow_dispatch:
     inputs:
