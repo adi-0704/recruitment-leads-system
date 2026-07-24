@@ -1,6 +1,42 @@
 {
   "leads": [
     {
+      "id": 9,
+      "name": "Michael Page Recruitment Agency, Perth",
+      "phone": "+61 8 9215 9500",
+      "address": "\ue0c8\nWestralia Plaza, Level 6/167 St Georges Terrace, Perth WA 6000, Australia",
+      "website": "https://www.michaelpage.com.au/contact-us-perth?utm_medium=organic&utm_source=google&utm_campaign=gmb&utm_content=perth",
+      "status": "Old Website",
+      "email": "enquiries@michaelpage.com.au",
+      "email_status": "Sent",
+      "sent_at": "2026-07-24T10:36:12.224942",
+      "followup_sent_at": null,
+      "replied_at": null,
+      "query": "accounting staffing agency",
+      "location": "Perth",
+      "scraped_at": "2026-07-24T10:36:11.298158",
+      "website_viewport": 1,
+      "website_ssl": 1,
+      "website_copyright_year": 2000,
+      "website_notes": "Issues found: outdated design (copyright shows 2000); no instant candidate scheduling (candidates cannot book screening calls directly from the website).",
+      "email_error": null,
+      "reply_subject": null,
+      "reply_body": null,
+      "agency_niche": null,
+      "ats_system": null,
+      "recruiter_count": 0,
+      "active_open_roles": 0,
+      "candidate_portal_type": null,
+      "ai_screening_detected": 0,
+      "technologies_used": null,
+      "pain_points": null,
+      "ai_opportunity_score": 0,
+      "personalization_data": null,
+      "reply_category": null,
+      "contact_name": null,
+      "job_title": null
+    },
+    {
       "id": 8,
       "name": "ChoiceOne",
       "phone": "+61 8 9215 3888",
@@ -254,11 +290,11 @@
     }
   ],
   "stats": {
-    "total": 7,
+    "total": 8,
     "no_website": 0,
-    "old_website": 6,
+    "old_website": 7,
     "modern_website": 1,
-    "sent": 5,
+    "sent": 6,
     "followup_sent": 0,
     "replied": 0,
     "failed": 0,
@@ -270,5 +306,5 @@
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-07-24T10:35:08.966837+00:00"
+  "generated_at": "2026-07-24T10:36:12.226992+00:00"
 }
