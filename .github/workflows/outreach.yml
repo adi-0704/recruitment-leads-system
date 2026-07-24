@@ -16,11 +16,11 @@ on:
       limit:
         description: 'Max Google Maps results per search term'
         required: false
-        default: '150'
+        default: '20'
       target:
-        description: 'Target qualified recruitment leads today (default: 400)'
+        description: 'Target qualified recruitment leads today (default: 100)'
         required: false
-        default: '400'
+        default: '100'
 
 permissions:
   contents: write
@@ -67,11 +67,11 @@ jobs:
           echo "  Email Sender: aditya.airecruitment@gmail.com"
           echo "=========================================================="
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            python scrape_and_outreach.py --target 400 --limit 150 --max-iterations 100
+            python scrape_and_outreach.py --target 100 --limit 20 --max-iterations 50
           else
-            ARGS="--limit ${{ github.event.inputs.limit || '150' }}"
+            ARGS="--limit ${{ github.event.inputs.limit || '20' }}"
             [ "${{ github.event.inputs.dry_run }}" = "true" ] && ARGS="$ARGS --dry-run"
-            TARGET="${{ github.event.inputs.target || '400' }}"
+            TARGET="${{ github.event.inputs.target || '100' }}"
             [ "$TARGET" != "0" ] && ARGS="$ARGS --target $TARGET"
             echo "Args: $ARGS"
             eval python scrape_and_outreach.py $ARGS
