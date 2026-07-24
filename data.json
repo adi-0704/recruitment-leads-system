@@ -1,6 +1,42 @@
 {
   "leads": [
     {
+      "id": 54,
+      "name": "Paramount",
+      "phone": "404) 760-4800",
+      "address": "\ue0c8\n4170 Ashford Dunwoody Rd NE, Atlanta, GA 30319",
+      "website": "http://www.hireparamount.com/",
+      "status": "Old Website",
+      "email": "careers@hireparamount.com",
+      "email_status": "Sent",
+      "sent_at": "2026-07-24T11:15:26.863424",
+      "followup_sent_at": null,
+      "replied_at": null,
+      "query": "recruitment agency",
+      "location": "Atlanta",
+      "scraped_at": "2026-07-24T11:15:25.699354",
+      "website_viewport": 0,
+      "website_ssl": 1,
+      "website_copyright_year": null,
+      "website_notes": "Issues found: not mobile-friendly (broken layout on phones and tablets); no instant candidate scheduling (candidates cannot book screening calls directly from the website); no AI assistant or 24/7 candidate chat (no way to pre-screen applicants after business hours).",
+      "email_error": null,
+      "reply_subject": null,
+      "reply_body": null,
+      "agency_niche": null,
+      "ats_system": null,
+      "recruiter_count": 0,
+      "active_open_roles": 0,
+      "candidate_portal_type": null,
+      "ai_screening_detected": 0,
+      "technologies_used": null,
+      "pain_points": null,
+      "ai_opportunity_score": 0,
+      "personalization_data": null,
+      "reply_category": null,
+      "contact_name": null,
+      "job_title": null
+    },
+    {
       "id": 53,
       "name": "Motion Recruitment Atlanta",
       "phone": "470) 582-9700",
@@ -1478,11 +1514,11 @@
     }
   ],
   "stats": {
-    "total": 41,
+    "total": 42,
     "no_website": 0,
-    "old_website": 36,
+    "old_website": 37,
     "modern_website": 5,
-    "sent": 35,
+    "sent": 36,
     "followup_sent": 0,
     "replied": 0,
     "failed": 0,
@@ -1494,5 +1530,5 @@
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-07-24T11:14:22.159151+00:00"
+  "generated_at": "2026-07-24T11:15:26.865873+00:00"
 }
