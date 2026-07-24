@@ -1,6 +1,42 @@
 {
   "leads": [
     {
+      "id": 44,
+      "name": "Elevate Accounting - Perth Business Accountants",
+      "phone": "+61 8 9460 1040",
+      "address": "\ue0c8\nLevel 9/1 Richardson St, South Perth WA 6151, Australia",
+      "website": "https://elevateaccounting.com.au/?utm_source=google+my+business&utm_medium=organic",
+      "status": "No Booking/AI",
+      "email": "shane@moduscapital.com",
+      "email_status": "Sent",
+      "sent_at": "2026-07-24T11:03:48.973599",
+      "followup_sent_at": null,
+      "replied_at": null,
+      "query": "accounting staffing agency",
+      "location": "Perth",
+      "scraped_at": "2026-07-24T11:03:48.004195",
+      "website_viewport": 1,
+      "website_ssl": 1,
+      "website_copyright_year": 2026,
+      "website_notes": "Issues found: no instant candidate scheduling (candidates cannot book screening calls directly from the website); no AI assistant or 24/7 candidate chat (no way to pre-screen applicants after business hours).",
+      "email_error": null,
+      "reply_subject": null,
+      "reply_body": null,
+      "agency_niche": null,
+      "ats_system": null,
+      "recruiter_count": 0,
+      "active_open_roles": 0,
+      "candidate_portal_type": null,
+      "ai_screening_detected": 0,
+      "technologies_used": null,
+      "pain_points": null,
+      "ai_opportunity_score": 0,
+      "personalization_data": null,
+      "reply_category": null,
+      "contact_name": null,
+      "job_title": null
+    },
+    {
       "id": 43,
       "name": "Epigroup",
       "phone": "+61 1300 414 313",
@@ -1190,11 +1226,11 @@
     }
   ],
   "stats": {
-    "total": 33,
+    "total": 34,
     "no_website": 0,
-    "old_website": 29,
+    "old_website": 30,
     "modern_website": 4,
-    "sent": 28,
+    "sent": 29,
     "followup_sent": 0,
     "replied": 0,
     "failed": 0,
@@ -1206,5 +1242,5 @@
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-07-24T11:02:43.337764+00:00"
+  "generated_at": "2026-07-24T11:03:48.975840+00:00"
 }
