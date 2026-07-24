@@ -1,6 +1,42 @@
 {
   "leads": [
     {
+      "id": 11,
+      "name": "Sharp & Carter",
+      "phone": "+61 8 6263 9340",
+      "address": "\ue0c8\nLevel 7/197 St Georges Terrace, Perth WA 6000, Australia",
+      "website": "http://www.sharpandcarter.com.au/",
+      "status": "Old Website",
+      "email": "leighjones@sharpandcarter.com.au",
+      "email_status": "Sent",
+      "sent_at": "2026-07-24T10:37:42.400345",
+      "followup_sent_at": null,
+      "replied_at": null,
+      "query": "accounting staffing agency",
+      "location": "Perth",
+      "scraped_at": "2026-07-24T10:37:41.228012",
+      "website_viewport": 0,
+      "website_ssl": 1,
+      "website_copyright_year": 2024,
+      "website_notes": "Issues found: not mobile-friendly (broken layout on phones and tablets); no instant candidate scheduling (candidates cannot book screening calls directly from the website); no AI assistant or 24/7 candidate chat (no way to pre-screen applicants after business hours).",
+      "email_error": null,
+      "reply_subject": null,
+      "reply_body": null,
+      "agency_niche": null,
+      "ats_system": null,
+      "recruiter_count": 0,
+      "active_open_roles": 0,
+      "candidate_portal_type": null,
+      "ai_screening_detected": 0,
+      "technologies_used": null,
+      "pain_points": null,
+      "ai_opportunity_score": 0,
+      "personalization_data": null,
+      "reply_category": null,
+      "contact_name": null,
+      "job_title": null
+    },
+    {
       "id": 9,
       "name": "Michael Page Recruitment Agency, Perth",
       "phone": "+61 8 9215 9500",
@@ -290,11 +326,11 @@
     }
   ],
   "stats": {
-    "total": 8,
+    "total": 9,
     "no_website": 0,
-    "old_website": 7,
+    "old_website": 8,
     "modern_website": 1,
-    "sent": 6,
+    "sent": 7,
     "followup_sent": 0,
     "replied": 0,
     "failed": 0,
@@ -306,5 +342,5 @@
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-07-24T10:36:12.226992+00:00"
+  "generated_at": "2026-07-24T10:37:42.402395+00:00"
 }
