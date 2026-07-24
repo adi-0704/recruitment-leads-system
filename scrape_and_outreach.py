@@ -1054,7 +1054,7 @@ def git_sync(db_path: str):
         subprocess.run(["git", "config", "--global", "user.email", "github-actions[bot]@users.noreply.github.com"], check=True, capture_output=True)
         
         # Add files (relative paths from repo root)
-        subprocess.run(["git", "add", "global-outreach/leads.db", "global-outreach/data.json", "global-outreach/sender_email.txt"], check=True, capture_output=True)
+        subprocess.run(["git", "add", "leads.db", "data.json", "sender_email.txt"], check=True, capture_output=True)
         
         # Check if changes exist
         diff_res = subprocess.run(["git", "diff", "--staged", "--quiet"])
