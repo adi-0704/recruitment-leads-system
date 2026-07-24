@@ -229,10 +229,40 @@ _HEADERS = {
 }
 
 
+class SafeDict(dict):
+    """Dictionary that returns default fallback strings for missing keys instead of raising KeyError."""
+    def __missing__(self, key):
+        defaults = {
+            "contact_name": "Team",
+            "ats_system": "your ATS",
+            "agency_niche": "your recruitment niche",
+            "active_open_roles": "open roles",
+            "first_line_personalization": "",
+            "company_personalization": "",
+            "industry_personalization": "",
+            "technology_personalization": "",
+            "job_posting_personalization": "",
+            "website_issues": "operational bottlenecks in candidate response time",
+            "business_name": "your agency",
+            "website_url": "your website",
+            "city": "your city",
+            "promo_url": "https://recruitment-ai-assistant.vercel.app/"
+        }
+        return defaults.get(key, f"{{{key}}}")
+
+
+def safe_format(template_str: str, **kwargs) -> str:
+    """Format template string safely without ever raising KeyError for missing placeholders."""
+    if not template_str:
+        return ""
+    clean_kwargs = {k: (v if v is not None else "") for k, v in kwargs.items()}
+    return template_str.format_map(SafeDict(**clean_kwargs))
+
+
 def _build_fault_list(result: dict) -> list:
     """
     Convert analysis result dict into a list of specific, human-readable
-    fault strings. Used to personalise outreach emails.
+    fault strings. Used to personalise outreach emails for recruitment agencies.
     """
     faults = []
     if not result["ssl"]:
@@ -242,17 +272,17 @@ def _build_fault_list(result: dict) -> list:
     if result["copyright_year"] and result["copyright_year"] <= 2022:
         faults.append(f"outdated design (copyright shows {result['copyright_year']})")
     if not result["has_booking"]:
-        faults.append("no online booking (patients cannot schedule appointments from the website)")
+        faults.append("no instant candidate scheduling (candidates cannot book screening calls directly from the website)")
     if not result["has_ai"]:
-        faults.append("no AI assistant or live chat (no way to answer patient questions after hours)")
+        faults.append("no AI assistant or 24/7 candidate chat (no way to pre-screen applicants after business hours)")
     if not result["has_contact_form"]:
-        faults.append("no contact form or online enquiry form")
+        faults.append("no candidate application or quick enquiry form")
     if not result["has_analytics"]:
-        faults.append("no website analytics (no visibility into how many patients visit or where they come from)")
+        faults.append("no website analytics (no visibility into candidate drop-off or job board traffic)")
     if not result["has_social"]:
-        faults.append("no social media links visible on the website")
+        faults.append("no social media or LinkedIn profile links visible on the website")
     if not result["has_reviews"]:
-        faults.append("no patient testimonials or reviews section")
+        faults.append("no client testimonials or candidate placement reviews section")
     return faults
 
 
@@ -704,8 +734,16 @@ def send_followup_emails_global(
         promo_url = config.get("promo_urls", {}).get(niche, config.get("promo_urls", {}).get("general", ""))
 
         if template:
-            subject = template["subject"].format(business_name=name, city=city or "your city")
-            body = template["body"].format(
+            subject = safe_format(
+                template.get("subject", "Re: Quick AI candidate screening audit for {business_name}"),
+                business_name=name,
+                city=city or "your city",
+                website_url=website or "your website",
+                promo_url=promo_url,
+                website_issues=issues,
+            )
+            body = safe_format(
+                template.get("body", ""),
                 business_name=name,
                 website_url=website or "your website",
                 promo_url=promo_url,
@@ -860,13 +898,21 @@ def send_single_email(
         template = config["email_templates"].get(niche) or list(config["email_templates"].values())[0]
 
     promo_url = config["promo_urls"].get(niche, config["promo_urls"].get("dental", ""))
-    subject   = template["subject"].format(business_name=name, city=city)
-    body      = template["body"].format(
+    subject = safe_format(
+        template.get("subject", "Quick AI candidate screening audit for {business_name}"),
+        business_name=name,
+        city=city or "your city",
+        website_url=website or "your website",
+        promo_url=promo_url,
+        website_issues=website_issues,
+    )
+    body = safe_format(
+        template.get("body", ""),
         business_name=name,
         website_url=website or "your website",
         promo_url=promo_url,
         website_issues=website_issues,
-        city=city,
+        city=city or "your city",
     )
 
     if is_dry_run:
@@ -1001,17 +1047,17 @@ def send_outreach_emails(
         )
         if success:
             sent_count += 1
-            if sent_count + sent_today >= DAILY_CAP:
+            if sent_count + budget_used >= DAILY_CAP:
                 print(f"  [Cap] Daily limit of {DAILY_CAP} reached. Stopping.")
                 break
             # Wait between sends
             remaining = len(leads_to_email) - sent_count
             if remaining > 0:
                 if not is_dry_run:
-                    print(f"  [Wait] Pausing 10 minutes before next email ({remaining} remaining)...")
+                    print(f"  [Wait] Pausing {SEND_GAP_SEC}s before next email ({remaining} remaining)...")
                     time.sleep(SEND_GAP_SEC)
 
-    print(f"[Outreach] Finished. {sent_count} emails dispatched today (total today: {sent_count + sent_today}).")
+    print(f"[Outreach] Finished. {sent_count} emails dispatched today (total today: {sent_count + budget_used}).")
     return sent_count
 
 
