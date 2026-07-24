@@ -1,6 +1,42 @@
 {
   "leads": [
     {
+      "id": 39,
+      "name": "Winteringham Recruitment",
+      "phone": "+61 8 6263 4430",
+      "address": "\ue0c8\n44 Kings Park Rd, West Perth WA 6005, Australia",
+      "website": "https://www.winteringham.com.au/",
+      "status": "No Booking/AI",
+      "email": "lynette@winteringham.com.au",
+      "email_status": "Sent",
+      "sent_at": "2026-07-24T10:59:15.583969",
+      "followup_sent_at": null,
+      "replied_at": null,
+      "query": "accounting staffing agency",
+      "location": "Perth",
+      "scraped_at": "2026-07-24T10:59:14.619326",
+      "website_viewport": 1,
+      "website_ssl": 1,
+      "website_copyright_year": 2024,
+      "website_notes": "Issues found: no instant candidate scheduling (candidates cannot book screening calls directly from the website); no AI assistant or 24/7 candidate chat (no way to pre-screen applicants after business hours).",
+      "email_error": null,
+      "reply_subject": null,
+      "reply_body": null,
+      "agency_niche": null,
+      "ats_system": null,
+      "recruiter_count": 0,
+      "active_open_roles": 0,
+      "candidate_portal_type": null,
+      "ai_screening_detected": 0,
+      "technologies_used": null,
+      "pain_points": null,
+      "ai_opportunity_score": 0,
+      "personalization_data": null,
+      "reply_category": null,
+      "contact_name": null,
+      "job_title": null
+    },
+    {
       "id": 38,
       "name": "Valrose",
       "phone": "+61 8 6166 9170",
@@ -1010,11 +1046,11 @@
     }
   ],
   "stats": {
-    "total": 28,
+    "total": 29,
     "no_website": 0,
-    "old_website": 25,
+    "old_website": 26,
     "modern_website": 3,
-    "sent": 24,
+    "sent": 25,
     "followup_sent": 0,
     "replied": 0,
     "failed": 0,
@@ -1026,5 +1062,5 @@
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-07-24T10:58:06.811740+00:00"
+  "generated_at": "2026-07-24T10:59:15.586179+00:00"
 }
