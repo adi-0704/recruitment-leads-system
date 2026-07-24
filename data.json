@@ -1,6 +1,42 @@
 {
   "leads": [
     {
+      "id": 103,
+      "name": "Hays - Staffing & Recruitment Agency Atlanta",
+      "phone": "404) 846-9392",
+      "address": "\ue0c8\n950 East Paces Ferry Rd NE #2155, Atlanta, GA 30326",
+      "website": "https://www.hays.com/?utm_source=places&utm_campaign=Atlanta&utm_medium=organic",
+      "status": "Old Website",
+      "email": "jon@hays.com",
+      "email_status": "Sent",
+      "sent_at": "2026-07-24T11:40:00.507004",
+      "followup_sent_at": null,
+      "replied_at": null,
+      "query": "recruitment agency",
+      "location": "Atlanta",
+      "scraped_at": "2026-07-24T11:39:59.411136",
+      "website_viewport": 1,
+      "website_ssl": 1,
+      "website_copyright_year": 2000,
+      "website_notes": "Issues found: outdated design (copyright shows 2000); no instant candidate scheduling (candidates cannot book screening calls directly from the website).",
+      "email_error": null,
+      "reply_subject": null,
+      "reply_body": null,
+      "agency_niche": null,
+      "ats_system": null,
+      "recruiter_count": 0,
+      "active_open_roles": 0,
+      "candidate_portal_type": null,
+      "ai_screening_detected": 0,
+      "technologies_used": null,
+      "pain_points": null,
+      "ai_opportunity_score": 0,
+      "personalization_data": null,
+      "reply_category": null,
+      "contact_name": null,
+      "job_title": null
+    },
+    {
       "id": 102,
       "name": "Accountants One",
       "phone": "770) 395-6969",
@@ -2630,11 +2666,11 @@
     }
   ],
   "stats": {
-    "total": 73,
+    "total": 74,
     "no_website": 1,
-    "old_website": 57,
+    "old_website": 58,
     "modern_website": 15,
-    "sent": 56,
+    "sent": 57,
     "followup_sent": 0,
     "replied": 0,
     "failed": 0,
@@ -2646,5 +2682,5 @@
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At\n\"Sevarg Staffing\",\"\",\"\ue0c8\n260 W Peachtree St NW #2200, Atlanta, GA 30303\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:38:50.583234\"",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-07-24T11:38:52.452680+00:00"
+  "generated_at": "2026-07-24T11:40:00.509840+00:00"
 }
