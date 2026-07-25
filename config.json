@@ -85,6 +85,18 @@
     "breakup": {
       "subject": "Closing the loop — {business_name}",
       "body": "Hi {contact_name},\n\nI haven't heard back, so I assume candidate screening automation isn't a top priority for {business_name} right now.\n\nI'll close your file for now. If anything changes down the road, you can always view our recruitment AI demo here:\n{promo_url}\n\nWishing {business_name} continued success!\n\nBest regards,\nAditya Tyagi"
+    },
+    "finance": {
+      "subject": "AI candidate screening for finance & accounting roles at {business_name}",
+      "body": "Hi {contact_name},\n\nI reviewed {business_name}'s candidate intake process on {website_url} and spotted a few gaps that typically slow down finance & accounting placements:\n\n{website_issues}\n\nFinance candidates expect fast, professional screening. Our AI Recruiter Assistant pre-qualifies candidates on qualifications, salary expectations, and availability — syncing directly into {ats_system} so your consultants only see job-ready profiles.\n\nSee a live demo:\n{promo_url}\n\nWould you be open to a quick 5-minute call to see how this fits {business_name}'s workflow?\n\nBest regards,\nAditya Tyagi\nAI & Automation Systems Engineer"
+    },
+    "engineering": {
+      "subject": "Faster engineering candidate screening for {business_name}",
+      "body": "Hi {contact_name},\n\nI took a look at {business_name}'s candidate portal on {website_url} and identified some workflow inefficiencies for engineering & technical placements:\n\n{website_issues}\n\nEngineering roles are hard to fill fast. Our AI Recruiter pre-screens candidates on technical skills, certifications, and availability 24/7 — pushing only the top profiles into {ats_system} within minutes of application.\n\nSee the engineering candidate screening demo:\n{promo_url}\n\nAre you open to a 5-minute call to explore this for {business_name}?\n\nBest regards,\nAditya Tyagi\nAI & Automation Systems Engineer"
+    },
+    "commercial": {
+      "subject": "24/7 candidate screening for temp & commercial staffing at {business_name}",
+      "body": "Hi {contact_name},\n\nI audited {business_name}'s candidate intake process on {website_url} and found several gaps that cost you temp placements:\n\n{website_issues}\n\nIn commercial & temp staffing, speed is everything. Our AI Recruiter handles candidate registration, shift availability, and compliance checks 24/7 — filling your temp roles faster with zero recruiter time wasted on unqualified applicants.\n\nSee a live demo:\n{promo_url}\n\nWould a quick 5-minute call work to see how this could increase {business_name}'s placement speed?\n\nBest regards,\nAditya Tyagi\nAI & Automation Systems Engineer"
     }
   }
 }

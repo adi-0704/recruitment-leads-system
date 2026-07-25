@@ -896,11 +896,21 @@ def send_single_email(
             config["email_templates"].get(template_key)
             or config["email_templates"].get("no_booking_ai")
             or config["email_templates"].get(niche)
+            or config["email_templates"].get("general_staffing")
+            or (list(config["email_templates"].values()) or [None])[0]
         )
     else:
-        template = config["email_templates"].get(niche) or list(config["email_templates"].values())[0]
+        template = (
+            config["email_templates"].get(niche)
+            or config["email_templates"].get("general_staffing")
+            or (list(config["email_templates"].values()) or [None])[0]
+        )
 
-    promo_url = config["promo_urls"].get(niche, config["promo_urls"].get("dental", ""))
+    if not template:
+        print(f"  [Outreach] No email template found for niche '{niche}' — skipping {email}.")
+        return False
+
+    promo_url = config["promo_urls"].get(niche, config["promo_urls"].get("general_staffing", ""))
     subject = safe_format(
         template.get("subject", "Quick AI candidate screening audit for {business_name}"),
         business_name=name,
