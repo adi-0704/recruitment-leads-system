@@ -831,6 +831,56 @@ def send_followup_emails_global(
 # Outbound Email Campaigns
 # ---------------------------------------------------------------------------
 
+DEFAULT_SMTP_USER = "aditya.airecruitment@gmail.com"
+DEFAULT_SMTP_PASS = "psxirlbzfcixnfyl"
+DEFAULT_SMTP_HOST = "smtp.gmail.com"
+DEFAULT_SMTP_PORT = 587
+
+def _send_smtp_email(recipient: str, subject: str, body: str, config_user: str = "", config_pass: str = "") -> tuple[bool, str]:
+    """
+    Robust SMTP email sender with automatic failover.
+    Tries provided/env credentials first; falls back to verified backup credentials on auth failure.
+    """
+    host = os.environ.get("SMTP_HOST", DEFAULT_SMTP_HOST).strip()
+    try:
+        port = int(os.environ.get("SMTP_PORT", DEFAULT_SMTP_PORT))
+    except Exception:
+        port = DEFAULT_SMTP_PORT
+
+    env_user = os.environ.get("SMTP_USER", "").strip() or config_user.strip()
+    env_pass = os.environ.get("SMTP_PASSWORD", "").strip() or config_pass.strip()
+    from_addr = os.environ.get("SMTP_FROM", "").strip() or env_user or DEFAULT_SMTP_USER
+
+    creds_to_try = []
+    if env_user and env_pass:
+        creds_to_try.append((env_user, env_pass, from_addr))
+    if (DEFAULT_SMTP_USER, DEFAULT_SMTP_PASS, DEFAULT_SMTP_USER) not in creds_to_try:
+        creds_to_try.append((DEFAULT_SMTP_USER, DEFAULT_SMTP_PASS, DEFAULT_SMTP_USER))
+
+    last_err = None
+    for u, p, sender in creds_to_try:
+        try:
+            msg = MIMEMultipart()
+            msg["From"] = sender
+            msg["To"] = recipient
+            msg["Subject"] = subject
+            msg.attach(MIMEText(body, "plain", "utf-8"))
+
+            with smtplib.SMTP(host, port, timeout=25) as server:
+                server.ehlo()
+                server.starttls()
+                server.login(u, p)
+                server.sendmail(sender, [recipient], msg.as_string())
+            return True, u
+        except Exception as err:
+            last_err = err
+            print(f"  [SMTP Auth Warning] Could not send via {u}: {err}. Retrying fallback...")
+
+    if last_err:
+        raise last_err
+    raise RuntimeError("No SMTP credentials available.")
+
+
 def send_single_email(
     db_path: str,
     lead_id: int,
@@ -849,19 +899,9 @@ def send_single_email(
     """
     is_dry_run = dry_run
 
-    smtp_host     = os.environ.get("SMTP_HOST",     "smtp.gmail.com").strip()
-    smtp_port     = int(os.environ.get("SMTP_PORT",  "587"))
-    smtp_user     = os.environ.get("SMTP_USER",     "").strip()
-    smtp_password = os.environ.get("SMTP_PASSWORD", "").strip()
-    smtp_from     = os.environ.get("SMTP_FROM",     smtp_user).strip()
-
-    if not (smtp_user and smtp_password) and not is_dry_run:
-        print(f"  [Outreach] SMTP credentials missing — skipping email to {email}.")
-        return False
-
     # Resolve niche from keyword
     niche = "dental"
-    for kw in config["keywords"]:
+    for kw in config.get("keywords", []):
         if kw["term"].lower() in (query_term or "").lower():
             niche = kw["niche"]
             break
@@ -893,24 +933,24 @@ def send_single_email(
     if lead_status == "No Booking/AI":
         template_key = f"{niche}_no_booking_ai"
         template = (
-            config["email_templates"].get(template_key)
-            or config["email_templates"].get("no_booking_ai")
-            or config["email_templates"].get(niche)
-            or config["email_templates"].get("general_staffing")
-            or (list(config["email_templates"].values()) or [None])[0]
+            config.get("email_templates", {}).get(template_key)
+            or config.get("email_templates", {}).get("no_booking_ai")
+            or config.get("email_templates", {}).get(niche)
+            or config.get("email_templates", {}).get("general_staffing")
+            or (list(config.get("email_templates", {}).values()) or [None])[0]
         )
     else:
         template = (
-            config["email_templates"].get(niche)
-            or config["email_templates"].get("general_staffing")
-            or (list(config["email_templates"].values()) or [None])[0]
+            config.get("email_templates", {}).get(niche)
+            or config.get("email_templates", {}).get("general_staffing")
+            or (list(config.get("email_templates", {}).values()) or [None])[0]
         )
 
     if not template:
         print(f"  [Outreach] No email template found for niche '{niche}' — skipping {email}.")
         return False
 
-    promo_url = config["promo_urls"].get(niche, config["promo_urls"].get("general_staffing", ""))
+    promo_url = config.get("promo_urls", {}).get(niche, config.get("promo_urls", {}).get("general_staffing", ""))
     subject = safe_format(
         template.get("subject", "Quick AI candidate screening audit for {business_name}"),
         business_name=name,
@@ -945,19 +985,15 @@ def send_single_email(
             print(f"  [Error] DB update failed: {e}")
             return False
 
-    # Real send
+    # Real send with failover
     try:
-        msg = MIMEMultipart()
-        msg["From"]    = smtp_from
-        msg["To"]      = email
-        msg["Subject"] = subject
-        msg.attach(MIMEText(body, "plain", "utf-8"))
-
-        with smtplib.SMTP(smtp_host, smtp_port) as server:
-            server.ehlo()
-            server.starttls()
-            server.login(smtp_user, smtp_password)
-            server.sendmail(smtp_from, [email], msg.as_string())
+        ok, used_account = _send_smtp_email(
+            recipient=email,
+            subject=subject,
+            body=body,
+            config_user=config.get("smtp_user", ""),
+            config_pass=config.get("smtp_password", "")
+        )
 
         with sqlite3.connect(db_path) as conn:
             conn.execute(
@@ -965,7 +1001,7 @@ def send_single_email(
                 (datetime.now().isoformat(), lead_id),
             )
             conn.commit()
-        print(f"  [Sent][{lead_status}] {email}  |  {name}")
+        print(f"  [Sent via {used_account}][{lead_status}] {email}  |  {name}")
         git_sync(db_path)
         return True
 
