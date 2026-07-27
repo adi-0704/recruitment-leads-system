@@ -28,7 +28,7 @@
   "followup_max_per_day": 25,
   "new_outreach_min_per_day": 25,
   "follow_up_days": 3,
-  "send_gap_seconds": 60,
+  "send_gap_seconds": 300,
   "promo_urls": {
     "general_staffing": "https://recruitment-ai-assistant.vercel.app/",
     "tech":             "https://recruitment-ai-assistant.vercel.app/tech",
