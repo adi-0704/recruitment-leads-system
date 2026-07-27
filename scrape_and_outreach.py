@@ -503,18 +503,24 @@ async def scrape_new_leads(
                 if not email:
                     lead_status = "Filtered (No Email)"
                     print("      -> Skipped from outreach queue (no email found)")
-                else:
-                    # Check if this email address was ever emailed previously
-                    cursor.execute(
-                        "SELECT id, email_status FROM leads WHERE email = ? AND email_status NOT IN ('Not Sent', 'Filtered (No Email)')",
-                        (email,)
-                    )
-                    existing_email = cursor.fetchone()
-                    if existing_email:
-                        print(f"      -> [Skip] Duplicate Email: '{email}' already contacted ({existing_email[1]}).")
-                        should_email = False
 
             # Check if we should immediately do outreach
+            should_email = (
+                immediate_outreach
+                and lead_status in ["Old Website", "No Booking/AI"]
+                and bool(email)
+            )
+
+            if should_email and email:
+                cursor.execute(
+                    "SELECT id, email_status FROM leads WHERE email = ? AND email_status NOT IN ('Not Sent', 'Filtered (No Email)')",
+                    (email,)
+                )
+                existing_email = cursor.fetchone()
+                if existing_email:
+                    print(f"      -> [Skip] Duplicate Email: '{email}' already contacted ({existing_email[1]}).")
+                    should_email = False
+
             if should_email:
                 today_date = datetime.now().strftime("%Y-%m-%d")
                 NEW_OUTREACH_CAP = config.get("new_outreach_min_per_day", 50)
