@@ -24,9 +24,9 @@
     "Sydney", "Melbourne", "Brisbane", "Perth",
     "Dublin", "Singapore", "Amsterdam", "Berlin", "Dubai"
   ],
-  "daily_email_limit": 100,
-  "followup_max_per_day": 50,
-  "new_outreach_min_per_day": 50,
+  "daily_email_limit": 50,
+  "followup_max_per_day": 25,
+  "new_outreach_min_per_day": 25,
   "follow_up_days": 3,
   "send_gap_seconds": 60,
   "promo_urls": {
