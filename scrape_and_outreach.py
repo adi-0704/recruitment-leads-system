@@ -592,7 +592,7 @@ async def scrape_new_leads(
                     # Wait before moving to next listing (unless dry-run or last record in results)
                     is_last_item = (idx == len(records))
                     if not is_last_item and not dry_run:
-                        print(f"      -> [Wait] Pausing 10 minutes before next listing...")
+                        print(f"      -> [Wait] Pausing 5 minutes ({SEND_GAP_SEC}s) before next listing...")
                         time.sleep(SEND_GAP_SEC)
     finally:
         conn.close()
@@ -1040,7 +1040,7 @@ def send_outreach_emails(
 
     DAILY_CAP    = config.get("daily_email_limit", 50)
     MIN_NEW_LEADS = 10   # Only start emailing when >= 10 new leads exist today
-    SEND_GAP_SEC = config.get("send_gap_seconds", 60)
+    SEND_GAP_SEC = config.get("send_gap_seconds", 300)
     today         = datetime.now().strftime("%Y-%m-%d")
 
     with sqlite3.connect(db_path) as conn:
@@ -1087,7 +1087,7 @@ def send_outreach_emails(
 
     print(f"[Outreach] {len(leads_to_email)} leads to contact (cap remaining: {remaining_slots}).")
     if is_dry_run:
-        print("  [DRY-RUN] Emails will be logged, not dispatched (no 10-min wait).")
+        print("  [DRY-RUN] Emails will be logged, not dispatched (no 5-min wait).")
 
     sent_count = 0
     for lead in leads_to_email:
