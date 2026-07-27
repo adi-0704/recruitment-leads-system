@@ -580,7 +580,11 @@ function getFilteredLeads() {
         return allLeads;
     }
     return allLeads.filter(lead => {
-        return lead.scraped_at && lead.scraped_at.startsWith(selectedDate);
+        const scrapedDate  = lead.scraped_at ? lead.scraped_at.split('T')[0] : '';
+        const sentDate     = lead.sent_at ? lead.sent_at.split('T')[0] : '';
+        const followupDate = lead.followup_sent_at ? lead.followup_sent_at.split('T')[0] : '';
+        const repliedDate  = lead.replied_at ? lead.replied_at.split('T')[0] : '';
+        return (scrapedDate === selectedDate || sentDate === selectedDate || followupDate === selectedDate || repliedDate === selectedDate);
     });
 }
 
@@ -630,16 +634,24 @@ function populateDateFilterBar() {
     const bar = document.getElementById('date-filter-bar');
     if (!bar) return;
 
-    // Extract unique dates from scraped_at
+    // Extract unique dates from scraped_at, sent_at, followup_sent_at, replied_at
     const dateSet = new Set();
     allLeads.forEach(lead => {
-        if (lead.scraped_at) {
-            const datePart = lead.scraped_at.split('T')[0]; // "YYYY-MM-DD"
-            if (datePart && datePart.match(/^\d{4}-\d{2}-\d{2}$/)) {
-                dateSet.add(datePart);
+        ['scraped_at', 'sent_at', 'followup_sent_at', 'replied_at'].forEach(field => {
+            if (lead[field]) {
+                const datePart = lead[field].split('T')[0]; // "YYYY-MM-DD"
+                if (datePart && datePart.match(/^\d{4}-\d{2}-\d{2}$/)) {
+                    dateSet.add(datePart);
+                }
             }
-        }
+        });
     });
+
+    // Always include today's date if not present
+    const todayLocal = new Date();
+    const offset = todayLocal.getTimezoneOffset();
+    const localDateStr = new Date(todayLocal.getTime() - (offset * 60 * 1000)).toISOString().split('T')[0];
+    dateSet.add(localDateStr);
 
     // Convert to sorted array (newest first)
     const sortedDates = Array.from(dateSet).sort().reverse();
@@ -649,12 +661,6 @@ function populateDateFilterBar() {
     
     sortedDates.forEach(dateStr => {
         const dateObj = new Date(dateStr);
-        
-        // Check if dateStr matches today (local date in client timezone)
-        const todayLocal = new Date();
-        const offset = todayLocal.getTimezoneOffset();
-        const localDateStr = new Date(todayLocal.getTime() - (offset*60*1000)).toISOString().split('T')[0];
-        
         let label = '';
         const formattedDate = dateObj.toLocaleDateString('en-US', {
             month: 'short',
