@@ -1,6 +1,8 @@
 name: Recruitment Agency AI Outreach Campaign
 
 on:
+  push:
+    branches: [ main ]
   schedule:
     # Runs daily at 06:30 UTC = 12:00 PM IST
     - cron: '30 6 * * *'
