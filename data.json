@@ -3752,9 +3752,9 @@
       "website": "https://www.epigroup.com.au/?utm_source=google&utm_medium=organic&utm_campaign=gbp",
       "status": "No Booking/AI",
       "email": "hayley@epigroup.com.au",
-      "email_status": "Sent",
+      "email_status": "Follow-Up Sent",
       "sent_at": "2026-07-24T11:02:43.335498",
-      "followup_sent_at": null,
+      "followup_sent_at": "2026-07-29T07:47:16.418228",
       "replied_at": null,
       "query": "accounting staffing agency",
       "location": "Perth",
@@ -4939,7 +4939,7 @@
     "old_website": 97,
     "modern_website": 37,
     "sent": 97,
-    "followup_sent": 27,
+    "followup_sent": 28,
     "replied": 0,
     "failed": 0,
     "high_ai_score": 0,
@@ -4950,5 +4950,5 @@
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At\n\"Talent Transformation\",\"972) 355-1117\",\"\ue0c8\n721 Balmoral Castle Ct, Flower Mound, TX 75022\",\"talent acquisition consultancy\",\"Dallas\",\"2026-07-27T10:05:47.824019\"\n\"US Air Force Recruiting - Atlanta\",\"770) 276-0511\",\"\ue0c8\n3620 Camp Creek Parkway Southwest #701, Atlanta, GA 30331\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:45:36.234375\"\n\"Sevarg Staffing\",\"\",\"\ue0c8\n260 W Peachtree St NW #2200, Atlanta, GA 30303\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:38:50.583234\"",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-07-29T07:42:13.934978+00:00"
+  "generated_at": "2026-07-29T07:47:16.422394+00:00"
 }
