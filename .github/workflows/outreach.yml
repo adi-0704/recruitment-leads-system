@@ -1,16 +1,13 @@
 name: Recruitment Agency AI Outreach Campaign
 
 on:
-  push:
-    branches: [ main ]
   schedule:
     # Runs daily at 06:30 UTC = 12:00 PM IST
     - cron: '30 6 * * *'
-
   workflow_dispatch:
     inputs:
       dry_run:
-        description: 'Dry-run only? (true = log, false = send real emails)'
+        description: 'Dry-run? (true = log only, false = send real emails)'
         required: false
         default: 'false'
         type: choice
@@ -20,9 +17,15 @@ on:
         required: false
         default: '20'
       target:
-        description: 'Target qualified recruitment leads today (default: 50)'
+        description: 'Target emails to send today'
         required: false
         default: '50'
+      no_scrape:
+        description: 'Skip scraping, only send emails from existing leads'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['false', 'true']
 
 permissions:
   contents: write
@@ -30,11 +33,14 @@ permissions:
 jobs:
   recruitment-outreach:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 40
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
@@ -51,7 +57,7 @@ jobs:
       - name: Install Playwright Chromium
         run: python -m playwright install --with-deps chromium
 
-      - name: Run Recruitment Agency Scraper & Outreach Engine
+      - name: Run Recruitment Agency Scraper & Outreach
         env:
           PYTHONUNBUFFERED: "1"
           SMTP_HOST:     ${{ secrets.SMTP_HOST || 'smtp.gmail.com' }}
@@ -64,20 +70,15 @@ jobs:
           IMAP_PASSWORD: ${{ secrets.IMAP_PASSWORD || 'psxirlbzfcixnfyl' }}
         run: |
           echo "=========================================================="
-          echo "  RECRUITMENT AGENCY AI OUTREACH CAMPAIGN"
-          echo "  Target: 50 new emails / day | 50 follow-ups / day"
-          echo "  Email Sender: aditya.airecruitment@gmail.com"
+          echo "  RECRUITMENT AGENCY AI OUTREACH — 12:00 PM IST"
+          echo "  Sender: aditya.airecruitment@gmail.com"
+          echo "  Target: 50 emails/day"
           echo "=========================================================="
-          if [ "${{ github.event_name }}" = "schedule" ]; then
-            python scrape_and_outreach.py --target 50 --limit 20 --max-iterations 10
-          else
-            ARGS="--limit ${{ github.event.inputs.limit || '20' }}"
-            [ "${{ github.event.inputs.dry_run }}" = "true" ] && ARGS="$ARGS --dry-run"
-            TARGET="${{ github.event.inputs.target || '50' }}"
-            [ "$TARGET" != "0" ] && ARGS="$ARGS --target $TARGET"
-            echo "Args: $ARGS"
-            eval python scrape_and_outreach.py $ARGS
-          fi
+          ARGS="--target ${{ github.event.inputs.target || '50' }} --limit ${{ github.event.inputs.limit || '20' }} --max-iterations 10"
+          [ "${{ github.event.inputs.dry_run }}" = "true" ]   && ARGS="$ARGS --dry-run"
+          [ "${{ github.event.inputs.no_scrape }}" = "true" ] && ARGS="$ARGS --no-scrape"
+          echo "Running: python scrape_and_outreach.py $ARGS"
+          eval python scrape_and_outreach.py $ARGS
 
       - name: Export data.json for Dashboard
         if: always()
@@ -86,16 +87,16 @@ jobs:
           SMTP_FROM: ${{ secrets.SMTP_FROM || 'aditya.airecruitment@gmail.com' }}
         run: python generate_data_json.py
 
-      - name: Commit & Sync Results to Repository
+      - name: Commit & Sync Results
         if: always()
         run: |
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main || true
           git add leads.db data.json sender_email.txt || true
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "chore: daily recruitment agency outreach sync [skip ci]"
-            git push
+            git commit -m "chore: recruitment outreach daily sync [skip ci]"
+            git pull --rebase origin main || true
+            git push origin main
           fi
