@@ -17,6 +17,27 @@ let configData = {};
 let activeTab  = 'overview';
 let senderEmail = '';
 
+// ── Auto-Refresh (Real-Time Sync) ─────────────────────────────────────────
+let _autoRefreshTimer = null;
+let _autoRefreshCountdown = 60;
+let _autoCountdownTick = null;
+let _lastFetchTime = null;
+
+function startAutoRefresh() {
+    if (_autoRefreshTimer)   clearInterval(_autoRefreshTimer);
+    if (_autoCountdownTick) clearInterval(_autoCountdownTick);
+    _autoRefreshCountdown = 60;
+    _autoRefreshTimer   = setInterval(() => { fetchData(); _autoRefreshCountdown = 60; }, 60000);
+    _autoCountdownTick  = setInterval(() => {
+        _autoRefreshCountdown = Math.max(0, _autoRefreshCountdown - 1);
+        const el = document.getElementById('page-subtitle');
+        if (el && _lastFetchTime) {
+            el.innerText = el.dataset.base || '' ;
+            el.innerText += `  ·  Live · Updated ${_lastFetchTime}  ·  Refresh in ${_autoRefreshCountdown}s`;
+        }
+    }, 1000);
+}
+
 // Initialize Dashboard
 document.addEventListener('DOMContentLoaded', () => {
     // Adjust UI for static (read-only) mode
@@ -28,18 +49,18 @@ document.addEventListener('DOMContentLoaded', () => {
             scrapeBtn.style.cursor  = 'not-allowed';
             scrapeBtn.onclick = (e) => { e.preventDefault(); alert('Scraper runs automatically every day via GitHub Actions.\nCheck the Actions tab on your repo.'); };
         }
-        // Swap CSV link to JS-powered Blob download
         const csvLink = document.getElementById('btn-export-csv');
         if (csvLink) {
             csvLink.removeAttribute('href');
             csvLink.onclick = (e) => { e.preventDefault(); downloadCsvBlob(); };
         }
-        // Hide the settings save forms (read-only on Pages)
         const settingsBtn = document.getElementById('btn-tab-settings');
         if (settingsBtn) settingsBtn.style.display = 'none';
     }
     fetchData();
+    startAutoRefresh();
 });
+
 
 // Switch Dashboard Tabs
 function switchTab(tabId) {
@@ -148,13 +169,13 @@ function renderFollowUpTab() {
 async function fetchData() {
     const refreshIcon = document.getElementById('refresh-icon');
     if (refreshIcon) refreshIcon.classList.add('spinning');
-    
+
     try {
         let stats;
 
         if (IS_STATIC) {
-            // ── GitHub Pages mode: single fetch of data.json ──────────────
-            const res = await fetch('data.json?t=' + Date.now()); // cache-bust
+            // ── GitHub Pages mode: single fetch of data.json ────────────────────
+            const res = await fetch('data.json?t=' + Date.now());
             if (!res.ok) throw new Error(`data.json fetch failed: HTTP ${res.status}`);
             const data = await res.json();
 
@@ -165,14 +186,10 @@ async function fetchData() {
             const match = rawSender.match(/<([^>]+)>/);
             senderEmail   = match ? match[1].trim() : rawSender.trim();
 
-            // Show last-updated timestamp
-            if (data.generated_at) {
-                const ts = new Date(data.generated_at);
-                const el = document.getElementById('page-subtitle');
-                if (el) el.innerText += `  ·  Last updated: ${formatDate(data.generated_at)}`;
-            }
+            // Store last update for display
+            if (data.generated_at) _lastFetchTime = new Date(data.generated_at).toLocaleTimeString();
         } else {
-            // ── Local Flask mode: parallel API calls ──────────────────────
+            // ── Local Flask mode: parallel API calls ───────────────────────────
             const [leadsRes, statsRes] = await Promise.all([
                 fetch('/api/leads'),
                 fetch('/api/stats')
@@ -182,7 +199,10 @@ async function fetchData() {
             }
             allLeads = await leadsRes.json();
             stats    = await statsRes.json();
+            _lastFetchTime = new Date().toLocaleTimeString();
         }
+
+        _autoRefreshCountdown = 60;
 
         // Populate the date filter bar
         populateDateFilterBar();
