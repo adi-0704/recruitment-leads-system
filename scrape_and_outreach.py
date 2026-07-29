@@ -38,6 +38,49 @@ if SCRIPT_DIR not in sys.path:
 
 from scraper import GoogleMapsScraper, EmailFinder  # noqa: E402
 
+# -- Email Safety Module (anti-spam headers, retry, jitter) ------------------
+try:
+    from email_safety import send_safe_email, safe_delay, GLOBAL_DAILY_HARD_CAP
+    _SAFETY_MODULE = True
+except ImportError:
+    _SAFETY_MODULE = False
+    print("[Warning] email_safety.py not found -- using basic SMTP fallback.")
+
+# -- Email Intelligence (MX validation, lead scoring, run summaries) ----------
+try:
+    from email_intelligence import (
+        validate_email_full, score_lead, rotate_subject,
+        send_run_summary, check_bounce_guard, format_send_stats,
+        is_good_send_time,
+    )
+    _INTELLIGENCE_MODULE = True
+except ImportError:
+    _INTELLIGENCE_MODULE = False
+    print("[Warning] email_intelligence.py not found -- skipping MX validation & scoring.")
+    def validate_email_full(e): return True, "ok"
+    def score_lead(**kw): return 50
+    def rotate_subject(cat="", business_name="", seed=None): return None
+    def send_run_summary(*a, **kw): return False
+    def check_bounce_guard(db, **kw): return True, "ok"
+    def format_send_stats(**kw): return ""
+    def is_good_send_time(): return True, "ok"
+
+# -- Cross-Workflow Dedup Engine (prevents same person being emailed twice) ---
+try:
+    from dedup_engine import DedupEngine as _DedupEngine
+    _PARENT_DIR = os.path.dirname(SCRIPT_DIR) if 'SCRIPT_DIR' in dir() else os.getcwd()
+    _dedup = _DedupEngine(os.path.join(_PARENT_DIR, "global_dedup.db"))
+    _DEDUP_MODULE = True
+except ImportError:
+    _DEDUP_MODULE = False
+    print("[Warning] dedup_engine.py not found -- dedup disabled.")
+    class _FakeDedup:
+        def is_sendable(self, e): return True
+        def mark_contacted(self, *a, **kw): return True
+        def scan_reply_for_unsubscribe(self, *a): return False
+    _dedup = _FakeDedup()
+
+
 # Default paths
 DB_PATH     = os.path.join(SCRIPT_DIR, "leads.db")
 CONFIG_PATH = os.path.join(SCRIPT_DIR, "config.json")
