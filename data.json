@@ -2312,9 +2312,9 @@
       "website": "https://accountantsone.com/",
       "status": "Old Website",
       "email": "clientservices@accountantsone.com",
-      "email_status": "Sent",
+      "email_status": "Follow-Up Sent",
       "sent_at": "2026-07-24T11:38:52.449756",
-      "followup_sent_at": null,
+      "followup_sent_at": "2026-07-31T09:53:25.901552",
       "replied_at": null,
       "query": "recruitment agency",
       "location": "Atlanta",
@@ -4939,16 +4939,16 @@
     "old_website": 97,
     "modern_website": 37,
     "sent": 97,
-    "followup_sent": 55,
+    "followup_sent": 56,
     "replied": 0,
     "failed": 0,
     "high_ai_score": 0,
     "ats_detected": 0,
     "meetings_booked": 0,
     "conversion_rate": 0.0,
-    "followups_due": 16
+    "followups_due": 15
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At\n\"Talent Transformation\",\"972) 355-1117\",\"\ue0c8\n721 Balmoral Castle Ct, Flower Mound, TX 75022\",\"talent acquisition consultancy\",\"Dallas\",\"2026-07-27T10:05:47.824019\"\n\"US Air Force Recruiting - Atlanta\",\"770) 276-0511\",\"\ue0c8\n3620 Camp Creek Parkway Southwest #701, Atlanta, GA 30331\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:45:36.234375\"\n\"Sevarg Staffing\",\"\",\"\ue0c8\n260 W Peachtree St NW #2200, Atlanta, GA 30303\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:38:50.583234\"",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-07-31T09:48:21.632653+00:00"
+  "generated_at": "2026-07-31T09:53:25.905923+00:00"
 }
