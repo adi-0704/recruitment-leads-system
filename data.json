@@ -1628,9 +1628,9 @@
       "website": "http://www.hofmannusa.com/",
       "status": "No Booking/AI",
       "email": "ikhusainfo@hofmannusa.com",
-      "email_status": "Sent",
+      "email_status": "Follow-Up Sent",
       "sent_at": "2026-07-24T11:51:33.986158",
-      "followup_sent_at": null,
+      "followup_sent_at": "2026-08-02T08:48:08.670372",
       "replied_at": null,
       "query": "recruitment agency",
       "location": "Atlanta",
@@ -4939,16 +4939,16 @@
     "old_website": 97,
     "modern_website": 37,
     "sent": 97,
-    "followup_sent": 66,
+    "followup_sent": 67,
     "replied": 0,
     "failed": 0,
     "high_ai_score": 0,
     "ats_detected": 0,
     "meetings_booked": 0,
     "conversion_rate": 0.0,
-    "followups_due": 31
+    "followups_due": 30
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At\n\"Talent Transformation\",\"972) 355-1117\",\"\ue0c8\n721 Balmoral Castle Ct, Flower Mound, TX 75022\",\"talent acquisition consultancy\",\"Dallas\",\"2026-07-27T10:05:47.824019\"\n\"US Air Force Recruiting - Atlanta\",\"770) 276-0511\",\"\ue0c8\n3620 Camp Creek Parkway Southwest #701, Atlanta, GA 30331\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:45:36.234375\"\n\"Sevarg Staffing\",\"\",\"\ue0c8\n260 W Peachtree St NW #2200, Atlanta, GA 30303\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:38:50.583234\"",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-08-02T08:43:06.605264+00:00"
+  "generated_at": "2026-08-02T08:48:08.674286+00:00"
 }
