@@ -1,6 +1,42 @@
 {
   "leads": [
     {
+      "id": 203,
+      "name": "Techridge Staffing India (P) Limited",
+      "phone": "+91 40 4858 5100",
+      "address": "\ue0c8\nDwarakamai Enclve, 8-3-167/R/22/203, Rajeev Nagar, Yousufguda, Hyderabad, Telangana 500045, India",
+      "website": "http://trstaffing.in/",
+      "status": "Old Website",
+      "email": "info@techridgestaffing.com",
+      "email_status": "Sent",
+      "sent_at": "2026-08-06T09:51:56.155102",
+      "followup_sent_at": null,
+      "replied_at": null,
+      "query": "tech recruitment agency",
+      "location": "Hyderabad",
+      "scraped_at": "2026-08-06T09:51:55.202975",
+      "website_viewport": 0,
+      "website_ssl": 0,
+      "website_copyright_year": 2018,
+      "website_notes": "Issues found: no SSL certificate (website shows as 'Not Secure' in browsers); not mobile-friendly (broken layout on phones and tablets); outdated design (copyright shows 2018).",
+      "email_error": null,
+      "reply_subject": null,
+      "reply_body": null,
+      "agency_niche": null,
+      "ats_system": null,
+      "recruiter_count": 0,
+      "active_open_roles": 0,
+      "candidate_portal_type": null,
+      "ai_screening_detected": 0,
+      "technologies_used": null,
+      "pain_points": null,
+      "ai_opportunity_score": 0,
+      "personalization_data": null,
+      "reply_category": null,
+      "contact_name": null,
+      "job_title": null
+    },
+    {
       "id": 202,
       "name": "H2o IT Consulting",
       "phone": "+91 95153 77951",
@@ -5294,11 +5330,11 @@
     }
   ],
   "stats": {
-    "total": 147,
+    "total": 148,
     "no_website": 3,
-    "old_website": 104,
+    "old_website": 105,
     "modern_website": 40,
-    "sent": 104,
+    "sent": 105,
     "followup_sent": 97,
     "replied": 0,
     "failed": 0,
@@ -5310,5 +5346,5 @@
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At\n\"Talent Transformation\",\"972) 355-1117\",\"\ue0c8\n721 Balmoral Castle Ct, Flower Mound, TX 75022\",\"talent acquisition consultancy\",\"Dallas\",\"2026-07-27T10:05:47.824019\"\n\"US Air Force Recruiting - Atlanta\",\"770) 276-0511\",\"\ue0c8\n3620 Camp Creek Parkway Southwest #701, Atlanta, GA 30331\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:45:36.234375\"\n\"Sevarg Staffing\",\"\",\"\ue0c8\n260 W Peachtree St NW #2200, Atlanta, GA 30303\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:38:50.583234\"",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-08-06T09:46:52.816260+00:00"
+  "generated_at": "2026-08-06T09:51:56.159439+00:00"
 }
