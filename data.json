@@ -1,6 +1,42 @@
 {
   "leads": [
     {
+      "id": 217,
+      "name": "Back Bay Staffing Group",
+      "phone": "617) 262-1313",
+      "address": "\ue0c8\n224 Clarendon St #51, Boston, MA 02116",
+      "website": "http://backbaystaffinggroup.com/",
+      "status": "No Booking/AI",
+      "email": "user@domain.com",
+      "email_status": "Not Sent",
+      "sent_at": null,
+      "followup_sent_at": null,
+      "replied_at": null,
+      "query": "accounting staffing agency",
+      "location": "Boston",
+      "scraped_at": "2026-08-07T08:23:02.906988",
+      "website_viewport": 1,
+      "website_ssl": 1,
+      "website_copyright_year": null,
+      "website_notes": "Issues found: no instant candidate scheduling (candidates cannot book screening calls directly from the website); no AI assistant or 24/7 candidate chat (no way to pre-screen applicants after business hours); no candidate application or quick enquiry form.",
+      "email_error": null,
+      "reply_subject": null,
+      "reply_body": null,
+      "agency_niche": null,
+      "ats_system": null,
+      "recruiter_count": 0,
+      "active_open_roles": 0,
+      "candidate_portal_type": null,
+      "ai_screening_detected": 0,
+      "technologies_used": null,
+      "pain_points": null,
+      "ai_opportunity_score": 0,
+      "personalization_data": null,
+      "reply_category": null,
+      "contact_name": null,
+      "job_title": null
+    },
+    {
       "id": 215,
       "name": "AVID Technical Resources",
       "phone": "617) 951-1880",
@@ -5618,9 +5654,9 @@
     }
   ],
   "stats": {
-    "total": 156,
+    "total": 157,
     "no_website": 3,
-    "old_website": 112,
+    "old_website": 113,
     "modern_website": 41,
     "sent": 112,
     "followup_sent": 97,
@@ -5634,5 +5670,5 @@
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At\n\"Talent Transformation\",\"972) 355-1117\",\"\ue0c8\n721 Balmoral Castle Ct, Flower Mound, TX 75022\",\"talent acquisition consultancy\",\"Dallas\",\"2026-07-27T10:05:47.824019\"\n\"US Air Force Recruiting - Atlanta\",\"770) 276-0511\",\"\ue0c8\n3620 Camp Creek Parkway Southwest #701, Atlanta, GA 30331\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:45:36.234375\"\n\"Sevarg Staffing\",\"\",\"\ue0c8\n260 W Peachtree St NW #2200, Atlanta, GA 30303\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:38:50.583234\"",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-08-07T08:17:49.869941+00:00"
+  "generated_at": "2026-08-07T08:23:06.363657+00:00"
 }
