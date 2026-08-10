@@ -1448,9 +1448,9 @@
       "website": "https://www.pacerecruit.com/?utm_source=Google%20My%20Business&utm_medium=GMB&utm_campaign=Local%20Listing",
       "status": "No Booking/AI",
       "email": "contact@pacerecruit.com",
-      "email_status": "Sent",
+      "email_status": "Follow-Up Sent",
       "sent_at": "2026-08-06T09:41:45.239641",
-      "followup_sent_at": null,
+      "followup_sent_at": "2026-08-10T08:33:03.057348",
       "replied_at": null,
       "query": "tech recruitment agency",
       "location": "Hyderabad",
@@ -6667,7 +6667,7 @@
     "old_website": 134,
     "modern_website": 46,
     "sent": 130,
-    "followup_sent": 102,
+    "followup_sent": 103,
     "replied": 0,
     "failed": 0,
     "high_ai_score": 0,
@@ -6678,5 +6678,5 @@
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At\n\"Ascent Consulting\",\"+91 93135 95185\",\"\ue0c8\n4th floor, Aapka Bazar, 423, Gurudwara Rd, Jacobpura, Civil Lines, Gurugram, Haryana 122001, India\",\"tech recruitment agency\",\"Gurgaon\",\"2026-08-09T07:56:58.964779\"\n\"GTC HR CONSULTANTS - IT/Non IT Recruitment Agency & Job Placement Consultancy Services in Gurugram, Delhi-NCR India\",\"+91 85120 20534\",\"\ue0c8\nHuda Market, sector 31, Huda Maket, Sector 31, Gurugram, Haryana 122001, India\",\"tech recruitment agency\",\"Gurgaon\",\"2026-08-09T07:46:41.714844\"\n\"Talent Transformation\",\"972) 355-1117\",\"\ue0c8\n721 Balmoral Castle Ct, Flower Mound, TX 75022\",\"talent acquisition consultancy\",\"Dallas\",\"2026-07-27T10:05:47.824019\"\n\"US Air Force Recruiting - Atlanta\",\"770) 276-0511\",\"\ue0c8\n3620 Camp Creek Parkway Southwest #701, Atlanta, GA 30331\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:45:36.234375\"\n\"Sevarg Staffing\",\"\",\"\ue0c8\n260 W Peachtree St NW #2200, Atlanta, GA 30303\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:38:50.583234\"",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-08-10T08:28:00.288849+00:00"
+  "generated_at": "2026-08-10T08:33:03.064334+00:00"
 }
