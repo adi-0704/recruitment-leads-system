@@ -1,6 +1,42 @@
 {
   "leads": [
     {
+      "id": 264,
+      "name": "Spencer Stuart",
+      "phone": "215) 814-1600",
+      "address": "\ue0c8\nOne Logan Square, 130 N 18th St 25th floor, Philadelphia, PA 19103",
+      "website": "https://www.spencerstuart.com/locations/philadelphia",
+      "status": "No Booking/AI",
+      "email": "contact@spencerstuart.com",
+      "email_status": "Sent",
+      "sent_at": "2026-08-11T08:21:20.540825",
+      "followup_sent_at": null,
+      "replied_at": null,
+      "query": "executive search firm",
+      "location": "Philadelphia",
+      "scraped_at": "2026-08-11T08:21:19.522461",
+      "website_viewport": 1,
+      "website_ssl": 1,
+      "website_copyright_year": 2026,
+      "website_notes": "Issues found: no instant candidate scheduling (candidates cannot book screening calls directly from the website); no AI assistant or 24/7 candidate chat (no way to pre-screen applicants after business hours).",
+      "email_error": null,
+      "reply_subject": null,
+      "reply_body": null,
+      "agency_niche": null,
+      "ats_system": null,
+      "recruiter_count": 0,
+      "active_open_roles": 0,
+      "candidate_portal_type": null,
+      "ai_screening_detected": 0,
+      "technologies_used": null,
+      "pain_points": null,
+      "ai_opportunity_score": 0,
+      "personalization_data": null,
+      "reply_category": null,
+      "contact_name": null,
+      "job_title": null
+    },
+    {
       "id": 263,
       "name": "FastTrack Solutions - Healthcare Recruitment Agency",
       "phone": "+971 4 224 0997",
@@ -6698,11 +6734,11 @@
     }
   ],
   "stats": {
-    "total": 186,
+    "total": 187,
     "no_website": 5,
-    "old_website": 135,
+    "old_website": 136,
     "modern_website": 46,
-    "sent": 131,
+    "sent": 132,
     "followup_sent": 114,
     "replied": 0,
     "failed": 0,
@@ -6714,5 +6750,5 @@
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At\n\"Ascent Consulting\",\"+91 93135 95185\",\"\ue0c8\n4th floor, Aapka Bazar, 423, Gurudwara Rd, Jacobpura, Civil Lines, Gurugram, Haryana 122001, India\",\"tech recruitment agency\",\"Gurgaon\",\"2026-08-09T07:56:58.964779\"\n\"GTC HR CONSULTANTS - IT/Non IT Recruitment Agency & Job Placement Consultancy Services in Gurugram, Delhi-NCR India\",\"+91 85120 20534\",\"\ue0c8\nHuda Market, sector 31, Huda Maket, Sector 31, Gurugram, Haryana 122001, India\",\"tech recruitment agency\",\"Gurgaon\",\"2026-08-09T07:46:41.714844\"\n\"Talent Transformation\",\"972) 355-1117\",\"\ue0c8\n721 Balmoral Castle Ct, Flower Mound, TX 75022\",\"talent acquisition consultancy\",\"Dallas\",\"2026-07-27T10:05:47.824019\"\n\"US Air Force Recruiting - Atlanta\",\"770) 276-0511\",\"\ue0c8\n3620 Camp Creek Parkway Southwest #701, Atlanta, GA 30331\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:45:36.234375\"\n\"Sevarg Staffing\",\"\",\"\ue0c8\n260 W Peachtree St NW #2200, Atlanta, GA 30303\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:38:50.583234\"",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-08-11T08:20:29.088085+00:00"
+  "generated_at": "2026-08-11T08:21:20.545707+00:00"
 }
