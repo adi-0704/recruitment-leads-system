@@ -1,6 +1,42 @@
 {
   "leads": [
     {
+      "id": 317,
+      "name": "Meritas Recruiting Inc",
+      "phone": "+1 403-536-3356",
+      "address": "\ue0c8\n350 7 Ave SW, Calgary, AB T2P 3N9, Canada",
+      "website": "http://www.meritasrecruiting.com/",
+      "status": "Old Website",
+      "email": "recruiting@meritasrecruiting.com",
+      "email_status": "Failed",
+      "sent_at": null,
+      "followup_sent_at": null,
+      "replied_at": null,
+      "query": "finance recruitment firm",
+      "location": "Calgary",
+      "scraped_at": "2026-08-12T08:20:15.795932",
+      "website_viewport": 0,
+      "website_ssl": 1,
+      "website_copyright_year": null,
+      "website_notes": "Issues found: not mobile-friendly (broken layout on phones and tablets); no instant candidate scheduling (candidates cannot book screening calls directly from the website); no AI assistant or 24/7 candidate chat (no way to pre-screen applicants after business hours).",
+      "email_error": "(534, b'5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbs\\n5.7.14 jtrC4Os4tuR_UKgaR6zhWkk37XgA-YU46Xr7HfuQA8ardXYez6nRBdOlr01Sw_NiA7d2K\\n5.7.14 wyoZwzNXeeYDoLn2HnlrMIlLbt7qsAnIAiDTi8uLu-7p90j3oABh9a8-0z88OOhg>\\n5.7.14 Please log in via your web browser and then try again.\\n5.7.14  For more information, go to\\n5.7.14  https://support.google.com/mail/answer/78754 af79cd13be357-936b5e0fb6csm79189385a.15 - gsmtp')",
+      "reply_subject": null,
+      "reply_body": null,
+      "agency_niche": null,
+      "ats_system": null,
+      "recruiter_count": 0,
+      "active_open_roles": 0,
+      "candidate_portal_type": null,
+      "ai_screening_detected": 0,
+      "technologies_used": null,
+      "pain_points": null,
+      "ai_opportunity_score": 0,
+      "personalization_data": null,
+      "reply_category": null,
+      "contact_name": null,
+      "job_title": null
+    },
+    {
       "id": 316,
       "name": "Lock Search Group",
       "phone": "+1 403-234-8500",
@@ -8174,14 +8210,14 @@
     }
   ],
   "stats": {
-    "total": 227,
+    "total": 228,
     "no_website": 6,
-    "old_website": 173,
+    "old_website": 174,
     "modern_website": 48,
     "sent": 132,
     "followup_sent": 117,
     "replied": 0,
-    "failed": 35,
+    "failed": 36,
     "high_ai_score": 0,
     "ats_detected": 0,
     "meetings_booked": 0,
@@ -8190,5 +8226,5 @@
   },
   "no_website_csv": "Name,Phone,Address,Search Keyword,City,Scraped At\n\"Lane Consultancy Services\",\"+91 90876 32200\",\"\ue0c8\n67, 2nd Floor, Madhavaram High Road, Perambur, Chennai, Tamil Nadu 600011, India\",\"engineering staffing agency\",\"Chennai\",\"2026-08-12T08:14:27.165431\"\n\"Ascent Consulting\",\"+91 93135 95185\",\"\ue0c8\n4th floor, Aapka Bazar, 423, Gurudwara Rd, Jacobpura, Civil Lines, Gurugram, Haryana 122001, India\",\"tech recruitment agency\",\"Gurgaon\",\"2026-08-09T07:56:58.964779\"\n\"GTC HR CONSULTANTS - IT/Non IT Recruitment Agency & Job Placement Consultancy Services in Gurugram, Delhi-NCR India\",\"+91 85120 20534\",\"\ue0c8\nHuda Market, sector 31, Huda Maket, Sector 31, Gurugram, Haryana 122001, India\",\"tech recruitment agency\",\"Gurgaon\",\"2026-08-09T07:46:41.714844\"\n\"Talent Transformation\",\"972) 355-1117\",\"\ue0c8\n721 Balmoral Castle Ct, Flower Mound, TX 75022\",\"talent acquisition consultancy\",\"Dallas\",\"2026-07-27T10:05:47.824019\"\n\"US Air Force Recruiting - Atlanta\",\"770) 276-0511\",\"\ue0c8\n3620 Camp Creek Parkway Southwest #701, Atlanta, GA 30331\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:45:36.234375\"\n\"Sevarg Staffing\",\"\",\"\ue0c8\n260 W Peachtree St NW #2200, Atlanta, GA 30303\",\"recruitment agency\",\"Atlanta\",\"2026-07-24T11:38:50.583234\"",
   "sender_email": "aditya.airecruitment@gmail.com",
-  "generated_at": "2026-08-12T08:20:12.104994+00:00"
+  "generated_at": "2026-08-12T08:20:16.178159+00:00"
 }
